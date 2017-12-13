@@ -15,6 +15,15 @@
     <PackageReference Include="Steeltoe.CloudFoundry.ConnectorCore" version="2.0.0-dev-00193" />
     <PackageReference Include="Steeltoe.Security.DataProtection.RedisCore" version="2.0.0-dev-00081" />
     <PackageReference Include="Steeltoe.Security.Authentication.CloudFoundryCore" Version="2.0.0-dev-00081" />
+    <PackageReference Include="Syncfusion.EJ.Pivot" Version="15.4600.0.17" />
+    <PackageReference Include="Syncfusion.XlsIO.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.DocIO.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.EJ.AspNet.Core" Version="15.4600.0.17" />
+    <PackageReference Include="Syncfusion.Compression.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.Presentation.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.Pdf.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.PMML.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.EJ.Export" Version="15.4600.0.17" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(BUILD)' == ''">
