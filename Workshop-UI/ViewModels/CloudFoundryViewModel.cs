@@ -1,7 +1,7 @@
 ﻿using Steeltoe.Extensions.Configuration.CloudFoundry;
 
 
-namespace Fortune_Teller_UI.ViewModels.Fortunes
+namespace Workshop_UI.ViewModels.Workshop
 {
     public class CloudFoundryViewModel
     {

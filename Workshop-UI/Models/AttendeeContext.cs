@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Fortune_Teller_UI.Models
+namespace Workshop_UI.Models
 {
     public class AttendeeContext : DbContext
     {
@@ -13,6 +13,6 @@ namespace Fortune_Teller_UI.Models
         {
         }
 
-        public DbSet<Fortune_Teller_UI.Models.AttendeeModel> AttendeeModel { get; set; }
+        public DbSet<Workshop_UI.Models.AttendeeModel> AttendeeModel { get; set; }
     }
 }

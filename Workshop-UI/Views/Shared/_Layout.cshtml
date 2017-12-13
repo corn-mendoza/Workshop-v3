@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -29,10 +29,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Fortunes" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Workshop" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Configuration" asp-action="Index">Configuration</a></li>
-                    <li><a asp-area="" asp-controller="Fortunes" asp-action="RandomFortune">Services</a></li>
+                    <li><a asp-area="" asp-controller="Workshop" asp-action="RandomFortune">Services</a></li>
                     <li><a asp-area="" asp-controller="Attendee" asp-action="Index">Database</a></li>
+                    <li><a asp-area="" asp-controller="Exchange" asp-action="Index">Exchange</a></li>
+                    <li><a asp-area="" asp-controller="Exchange" asp-action="Index">Steeltoe</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

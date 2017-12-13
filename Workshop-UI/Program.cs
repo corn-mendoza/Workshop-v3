@@ -13,7 +13,7 @@ using Pivotal.Extensions.Configuration.ConfigServer;
 using Steeltoe.Extensions.Logging;
 // Lab11 End
 
-namespace Fortune_Teller_UI
+namespace Workshop_UI
 {
     public class Program
     {

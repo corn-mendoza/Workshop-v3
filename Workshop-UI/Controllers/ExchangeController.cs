@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Fortune_Teller_UI.Controllers
+namespace Workshop_UI.Controllers
 {
     public class ExchangeController : Controller
     {

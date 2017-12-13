@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 
-using Fortune_Teller_UI.Services;
+using Workshop_UI.Services;
 
 // Lab07 Start
 using Pivotal.Discovery.Client;
@@ -30,7 +30,7 @@ using Steeltoe.CircuitBreaker.Hystrix;
 using Steeltoe.Management.CloudFoundry;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using System;
-using Fortune_Teller_UI.Models;
+using Workshop_UI.Models;
 using Microsoft.EntityFrameworkCore;
 using Pivotal.Extensions.Configuration.ConfigServer;
 using System.Linq;
@@ -39,7 +39,7 @@ using Pivotal.Helper;
 
 
 
-namespace Fortune_Teller_UI
+namespace Workshop_UI
 {
     public class Startup
     {
@@ -64,7 +64,7 @@ namespace Fortune_Teller_UI
                 services.AddRedisConnectionMultiplexer(Configuration);
                 services.AddDataProtection()
                     .PersistKeysToRedis()
-                    .SetApplicationName("fortuneui");
+                    .SetApplicationName("workshopui");
             }
             // Lab08 End
 
@@ -110,7 +110,7 @@ namespace Fortune_Teller_UI
             })
             .AddCookie((options) =>
             {
-                options.AccessDeniedPath = new PathString("/Fortunes/AccessDenied");
+                options.AccessDeniedPath = new PathString("/Workshop/AccessDenied");
 
             })
             .AddCloudFoundryOAuth(Configuration);
@@ -137,19 +137,25 @@ namespace Fortune_Teller_UI
             services.AddMvc();
 
             // Use the Bound Service for connection string if it is found in a User Provided Service
+            string sourceString = "appsettings.json";
             string dbString = Configuration.GetConnectionString("AttendeeContext");
-
-            var cfe = new CFEnvironmentVariables();
-            var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext");            
-            if (!string.IsNullOrEmpty(_connect))
+            IConfigurationSection configurationSection = Configuration.GetSection("ConnectionStrings");
+            if (configurationSection != null)
             {
-                Console.WriteLine($"Using bound service connection string for data: {_connect}");
-                dbString = _connect;
+                if (configurationSection.GetValue<string>("AttendeeContext") != null)
+                    sourceString = "Config Server";
             }
             else
             {
-                Console.WriteLine($"Using connection string from appsetings.json");
+                var cfe = new CFEnvironmentVariables();
+                var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext");
+                if (!string.IsNullOrEmpty(_connect))
+                {
+                    sourceString = "User Provided Service";
+                }
             }
+
+            Console.WriteLine($"Using connection string from the {sourceString}");
 
             services.AddDbContext<AttendeeContext>(options =>
                     options.UseSqlServer(dbString));
@@ -165,7 +171,7 @@ namespace Fortune_Teller_UI
             }
             else
             {
-                app.UseExceptionHandler("/Fortunes/Error");
+                app.UseExceptionHandler("/Workshop/Error");
             }
 
             app.UseStaticFiles();
@@ -188,7 +194,7 @@ namespace Fortune_Teller_UI
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Fortunes}/{action=Index}/{id?}");
+                    template: "{controller=Workshop}/{action=Index}/{id?}");
             });
 
 

@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RootNamespace>Fortune_Teller_UI</RootNamespace>
+    <RootNamespace>Workshop_UI</RootNamespace>
+    <Company>Pivotal Software, Inc.</Company>
+    <Product>Workshop Demo</Product>
   </PropertyGroup>
 
   <ItemGroup>

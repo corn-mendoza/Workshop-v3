@@ -4,7 +4,7 @@ using Steeltoe.CircuitBreaker.Hystrix;
 
 using System.Threading.Tasks;
 
-namespace Fortune_Teller_UI.Services
+namespace Workshop_UI.Services
 {
     // Lab09 Start
     public class FortuneServiceCommand : HystrixCommand<Fortune>

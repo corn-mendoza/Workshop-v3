@@ -10,7 +10,7 @@ using Pivotal.Extensions.Configuration.ConfigServer;
 using Pivotal.Helper;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 
-namespace Fortune_Teller_UI.Controllers
+namespace Workshop_UI.Controllers
 {
     public class ConfigurationController : Controller
     {
@@ -54,6 +54,10 @@ namespace Fortune_Teller_UI.Controllers
             ViewData["appName"] = Config["vcap:application:application_name"];
             ViewData["uri0"] = Config["vcap:application:application_uris:0"];
             ViewData["disk"] = Config["vcap:application:limits:disk"];
+
+            IConfigurationSection configurationSection = Config.GetSection("ConnectionStrings");
+            if (configurationSection != null)
+                ViewData["configSvrString"] = configurationSection.GetValue<string>("AttendeeContext");
 
             ViewData["jsonDBString"] = Config.GetConnectionString("AttendeeContext").Replace("PCF!Password", "*****");
             var cfe = new CFEnvironmentVariables();

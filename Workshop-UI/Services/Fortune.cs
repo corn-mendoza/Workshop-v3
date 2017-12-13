@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fortune_Teller_UI.Services
+namespace Workshop_UI.Services
 {
     public class Fortune
     {

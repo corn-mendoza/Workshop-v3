@@ -16,7 +16,7 @@ using System.Net.Http.Headers;
 using Steeltoe.Common.Discovery;
 // Lab07 End
 
-namespace Fortune_Teller_UI.Services
+namespace Workshop_UI.Services
 {
     public class FortuneServiceClient : IFortuneService
     {

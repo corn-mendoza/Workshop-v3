@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Fortune_Teller_UI.Models;
+using Workshop_UI.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Pivotal.Helper;
 
-namespace Fortune_Teller_UI.Controllers
+namespace Workshop_UI.Controllers
 {
     public class AttendeeController : Controller
     {
@@ -31,6 +31,13 @@ namespace Fortune_Teller_UI.Controllers
         {
             var _dbstring = Config.GetConnectionString("AttendeeContext");
             ViewData["ConnectSource"] = "appsettings.json";
+            IConfigurationSection configurationSection = Config.GetSection("ConnectionStrings");
+            if (configurationSection != null)
+            {
+                if (configurationSection.GetValue<string>("AttendeeContext") != null)
+                    ViewData["ConnectSource"] = "Config Server";
+            }
+
             var cfe = new CFEnvironmentVariables();
             var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext");
             if (!string.IsNullOrEmpty(_connect))
@@ -38,6 +45,7 @@ namespace Fortune_Teller_UI.Controllers
                 ViewData["ConnectSource"] = "User Provided Service";
                 _dbstring = _connect;
             }
+
             ViewData["ConnectionString"] = _dbstring.Replace("PCF!Password", "*****");
             return View(await _context.AttendeeModel.ToListAsync());
         }

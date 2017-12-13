@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Fortune_Teller_UI.Models
+namespace Workshop_UI.Models
 {
     public class AttendeeModel
     {

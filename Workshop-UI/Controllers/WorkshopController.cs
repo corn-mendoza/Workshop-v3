@@ -3,27 +3,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Fortune_Teller_UI.Services;
+using Workshop_UI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
-using Fortune_Teller_UI.ViewModels.Fortunes;
+using Workshop_UI.ViewModels.Workshop;
 
-namespace Fortune_Teller_UI.Controllers
+namespace Workshop_UI.Controllers
 {
-    public class FortunesController : Controller
+    public class WorkshopController : Controller
     {
-        ILogger<FortunesController> _logger;
+        ILogger<WorkshopController> _logger;
         public CloudFoundryServicesOptions CloudFoundryServices { get; set; }
         public CloudFoundryApplicationOptions CloudFoundryApplication { get; set; }
         IOptionsSnapshot<FortuneServiceOptions> _fortunesConfig;
         // Lab09 Start
         private FortuneServiceCommand _fortunes;
-        public FortunesController(
-            ILogger<FortunesController> logger,
+        public WorkshopController(
+            ILogger<WorkshopController> logger,
             IOptionsSnapshot<FortuneServiceOptions> config,
             FortuneServiceCommand fortunes, 
             IOptions<CloudFoundryApplicationOptions> appOptions,
@@ -46,9 +46,9 @@ namespace Fortune_Teller_UI.Controllers
         }
 
         // Lab10 Start
-        [Authorize(Policy = "read.fortunes")] 
+        //[Authorize(Policy = "read.fortunes")] 
         // Lab10 End
-        public async Task<IActionResult> RandomFortune()
+        public async Task<IActionResult> Services()
         {
             _logger?.LogDebug("RandomFortune");
 
@@ -72,7 +72,7 @@ namespace Fortune_Teller_UI.Controllers
             await HttpContext.SignOutAsync();
             HttpContext.Session.Clear();
             await HttpContext.Session.CommitAsync();
-            return RedirectToAction(nameof(FortunesController.Index), "Fortunes");
+            return RedirectToAction(nameof(WorkshopController.Index), "Workshop");
         }
 
         [HttpGet]
@@ -81,7 +81,7 @@ namespace Fortune_Teller_UI.Controllers
         // Lab10 Start
         public IActionResult Login()
         {
-            return RedirectToAction(nameof(FortunesController.Index), "Fortunes");
+            return RedirectToAction(nameof(WorkshopController.Index), "Workshop");
         }
 
         [Authorize]

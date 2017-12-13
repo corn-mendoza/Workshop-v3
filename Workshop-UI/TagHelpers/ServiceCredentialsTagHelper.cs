@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Fortune_Teller_UI.TagHelpers
+namespace Workshop_UI.TagHelpers
 {
    
     /// <summary>
