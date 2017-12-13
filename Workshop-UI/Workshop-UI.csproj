@@ -24,6 +24,7 @@
     <PackageReference Include="Syncfusion.EJ.AspNet.Core" Version="15.4600.0.17" />
     <PackageReference Include="Syncfusion.Presentation.NETStandard20" Version="15.4200.0.17" />
     <PackageReference Include="Syncfusion.Pdf.NETStandard20" Version="15.4200.0.17" />
+    <PackageReference Include="Syncfusion.PMML.NETStandard20" Version="15.4200.0.17" />
     <PackageReference Include="Syncfusion.EJ.Export" Version="15.4600.0.17" />
   </ItemGroup>
 
