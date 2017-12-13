@@ -146,7 +146,10 @@ namespace Workshop_UI
             if (configurationSection != null)
             {
                 if (configurationSection.GetValue<string>("AttendeeContext") != null)
+                {
+                    dbString = configurationSection.GetValue<string>("AttendeeContext");
                     sourceString = "Config Server";
+                }
             }
             else
             {
