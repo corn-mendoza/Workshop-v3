@@ -35,6 +35,7 @@ using Microsoft.EntityFrameworkCore;
 using Pivotal.Extensions.Configuration.ConfigServer;
 using System.Linq;
 using Pivotal.Helper;
+using Steeltoe.Management.Endpoint.Health;
 // Lab11 End
 
 
@@ -129,6 +130,8 @@ namespace Workshop_UI
             // Lab09 End
 
             services.AddSession();
+
+            services.AddSingleton<IHealthContributor, SqlServerHealthContributor>();
 
             // Lab11 Start
             services.AddCloudFoundryActuators(Configuration);
