@@ -1,0 +1,14 @@
+﻿---
+applications:
+- name: fortuneui
+  random-route: true
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
+  env:
+    ASPNETCORE_ENVIRONMENT: Production
+  services:
+   - myConfigServer
+   - myDiscoveryService
+   - myRedisService
+   - myHystrixService
+   - myOAuthService
+   - AttendeeContext

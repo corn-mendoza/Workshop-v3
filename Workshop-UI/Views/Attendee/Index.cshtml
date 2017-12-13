@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Fortune_Teller_UI.Models.AttendeeModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="jumbotron">
+    <div class="media">
+        <a class="pull-left" href="http://pivotal.io">
+            <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Cloud Foundry" alt="PCF" width="70" height="70" />
+        </a>
+        <div class="media-body">
+            <h1 class="media-heading">Database Connections</h1>
+        </div>
+    </div>
+    <p class="lead">Handling database connections using appsettings.json with user provided services</p>
+    <p class="lead">Implement Cloud Native patterns for applications needing access to data services.  Write your code so that it can run the same way on your development machine and on the production server.</p>
+    @*<p><a href="http://apps.sys.islands.cloud" class="btn btn-primary btn-lg">Apps Manager &raquo;</a></p>*@
+</div>
+<h2>Connection Details</h2>
+<h4>Connection String: @ViewData["ConnectionString"]</h4>
+<h4>Source: @ViewData["ConnectSource"]</h4>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
