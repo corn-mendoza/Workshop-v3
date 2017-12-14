@@ -17,7 +17,11 @@
     <p class="lead">This application features all of the features available for .NET developers on Cloud Foundry.  Whether you are re-platforming legacy applications or creating the next generation cloud native applications, PCF can accelerate your time to market while reducing the cost to operate.</p>
     <p><a href="http://apps.sys.islands.cloud" class="btn btn-primary btn-lg">Learn More &raquo;</a></p>
 </div>
-
+<div class="panel-default">
+    <h3>Dynamic Discovery Service Endpoints</h3>
+    <h5>Order Manager Service Endpoint: @ViewBag.OMS</h5>
+    <h5>Market Data Service Endpoint: @ViewBag.MDS</h5>
+</div>
 <script>
         $(() => {
             var OMS_URL = "@ViewBag.OMS";
@@ -348,7 +352,7 @@
     </div>
 </div>
 <h3>Ticker</h3>
-<table width="50%">
+<table>
     <thead>
         <tr>
             <th>Symbol</th>

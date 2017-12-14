@@ -1,9 +1,9 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
-    <form asp-area="" asp-controller="Fortunes" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+    <form asp-area="" asp-controller="Workshop" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="Fortunes" asp-action="Manage" title="Manage">Hello @User.Identity.Name!</a>
+                <a asp-area="" asp-controller="Workshop" asp-action="Manage" title="Manage">Hello @User.Identity.Name!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
@@ -14,6 +14,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Fortunes" asp-action="Login">Log in</a></li>
+        <li><a asp-area="" asp-controller="Workshop" asp-action="Login">Log in</a></li>
     </ul>
 }

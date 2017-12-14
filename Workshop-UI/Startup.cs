@@ -84,10 +84,8 @@ namespace Workshop_UI
             //
 
             // Lab07 Start
-            if (!Environment.IsDevelopment())
-            {
-                services.AddDiscoveryClient(Configuration);
-            }
+            services.AddDiscoveryClient(Configuration);
+
             // Lab07 End
 
             // Lab08 Start
