@@ -7,4 +7,4 @@ applications:
     ASPNETCORE_ENVIRONMENT: Production
   services:
    - myDiscoveryService
-   - myRabbitMqService
+   - myRabbitMQService
