@@ -19,14 +19,14 @@ namespace Workshop_UI
             _logger = logger;
         }
 
-        public string Id { get; } = "msSql";
+        public string Id { get; } = "MSSql";
 
         public Health Health()
         {
-            _logger.LogInformation("Checking MSSQL connection health!");
+            _logger.LogInformation("Checking MSSql connection health!");
 
             Health result = new Health();
-            result.Details.Add("Database", $"MSSQL: {_context.GetType().Name} ");
+            result.Details.Add("Database", $"MSSql: {_context.GetType().Name} ");
             SqlConnection _connection = null;
             try
             {
@@ -39,7 +39,7 @@ namespace Workshop_UI
                     result.Details.Add("Result", qresult);
                     result.Details.Add("Status", HealthStatus.UP.ToString());
                     result.Status = HealthStatus.UP;
-                    _logger.LogInformation($"MSSQL Server {_context.GetType().Name} connection up!");
+                    _logger.LogInformation($"MSSql Server {_context.GetType().Name} connection up!");
                 }
 
             }
