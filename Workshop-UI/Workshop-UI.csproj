@@ -26,12 +26,12 @@
     <PackageReference Include="Syncfusion.Pdf.NETStandard20" Version="15.4200.0.17" />
     <PackageReference Include="Syncfusion.PMML.NETStandard20" Version="15.4200.0.17" />
     <PackageReference Include="Syncfusion.EJ.Export" Version="15.4600.0.17" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.1.0-pre2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(BUILD)' == ''">
     <PackageReference Include="Steeltoe.CircuitBreaker.HystrixCore" Version="2.0.0-dev-00084" />
     <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsStreamCore" Version="2.0.0-dev-00084" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.1.0-pre2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(BUILD)' == 'LOCAL'">
@@ -69,7 +69,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Fortune-Service-Model\Fortune-Service-Model.csproj" />
+    <ProjectReference Include="..\Fortune-Service-Model\Fortune-Service-Client.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   
 </Project>

@@ -1,11 +1,9 @@
-﻿using Fortune_Service_Model.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Steeltoe.CircuitBreaker.Hystrix;
 
 using System.Threading.Tasks;
 
-namespace Workshop_UI.Services
+namespace FortuneService.Client
 {
     // Lab09 Start
     public class FortuneServiceCommand : HystrixCommand<Fortune>

@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange", "Exchange\Exchan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDataServer", "MarketDataServer\MarketDataServer.csproj", "{113AEF61-24E6-41D0-BA52-F661E33F2979}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fortune-Service-Model", "Fortune-Service-Model\Fortune-Service-Model.csproj", "{E658946F-D7F4-418D-B0B6-9D29C24DE50C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fortune-Service-Client", "Fortune-Service-Model\Fortune-Service-Client.csproj", "{E658946F-D7F4-418D-B0B6-9D29C24DE50C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,17 +1,15 @@
 ﻿
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Workshop_UI.Services;
+using FortuneService.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
+using System;
+using System.Threading.Tasks;
 using Workshop_UI.ViewModels.Workshop;
-using Fortune_Service_Model.Services;
 
 namespace Workshop_UI.Controllers
 {

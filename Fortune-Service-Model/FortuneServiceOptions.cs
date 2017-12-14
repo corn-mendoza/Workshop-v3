@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fortune_Service_Model.Services
+namespace FortuneService.Client
 {
     public class FortuneServiceOptions
     {

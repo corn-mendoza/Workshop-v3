@@ -12,12 +12,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using System.Net.Http.Headers;
 
-// Lab07 Start
 using Steeltoe.Common.Discovery;
-using Fortune_Service_Model.Services;
-// Lab07 End
 
-namespace Workshop_UI.Services
+namespace FortuneService.Client
 {
     public class FortuneServiceClient : IFortuneService
     {

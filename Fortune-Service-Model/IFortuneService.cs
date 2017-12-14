@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Fortune_Service_Model.Services
+namespace FortuneService.Client
 {
     public interface IFortuneService
     {

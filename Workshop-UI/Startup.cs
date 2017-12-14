@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 
-using Workshop_UI.Services;
-
 // Lab07 Start
 using Pivotal.Discovery.Client;
 // Lab07 End
@@ -36,7 +34,7 @@ using Pivotal.Extensions.Configuration.ConfigServer;
 using System.Linq;
 using Pivotal.Helper;
 using Steeltoe.Management.Endpoint.Health;
-using Fortune_Service_Model.Services;
+using FortuneService.Client;
 // Lab11 End
 
 
