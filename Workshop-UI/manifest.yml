@@ -11,4 +11,5 @@ applications:
    - myRedisService
    - myHystrixService
    - myOAuthService
+   - myRabbitMQService
    - AttendeeContext
