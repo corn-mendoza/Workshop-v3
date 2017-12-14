@@ -8,7 +8,7 @@ applications:
   buildpack: java_buildpack_offline
   
 env:
-  TRUST_CERTS: api.sys.pcf.space
+  TRUST_CERTS: api.sys.islands.cloud
   
 services:
  - omsdb 
