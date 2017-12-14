@@ -40,6 +40,13 @@ namespace Workshop_UI.Controllers
         public IActionResult Index()
         {
             _logger?.LogDebug("Index");
+
+            return View();
+        }
+
+        public IActionResult Steeltoe()
+        {
+            _logger?.LogDebug("Steeltoe");
             ViewData["MyFortune"] = HttpContext.Session.GetString("MyFortune");
 
             return View();
