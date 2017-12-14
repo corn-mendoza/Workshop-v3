@@ -11,9 +11,9 @@ namespace Workshop_UI
 {
     public class SqlServerHealthContributor : IHealthContributor
     {
-        DbContext _context;
+        AttendeeContext _context;
         ILogger<SqlServerHealthContributor> _logger;
-        public SqlServerHealthContributor(DbContext dbContext, ILogger<SqlServerHealthContributor> logger)
+        public SqlServerHealthContributor(AttendeeContext dbContext, ILogger<SqlServerHealthContributor> logger)
         {
             _context = dbContext;
             _logger = logger;
@@ -39,7 +39,7 @@ namespace Workshop_UI
                     result.Details.Add("Result", qresult);
                     result.Details.Add("Status", HealthStatus.UP.ToString());
                     result.Status = HealthStatus.UP;
-                    _logger.LogInformation($"MSSQL Server  {_context.GetType().Name} connection up!");
+                    _logger.LogInformation($"MSSQL Server {_context.GetType().Name} connection up!");
                 }
 
             }
