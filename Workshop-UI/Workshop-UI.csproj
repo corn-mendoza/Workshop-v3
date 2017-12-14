@@ -8,15 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
     <PackageReference Include="Pivotal.Extensions.Configuration.ConfigServerCore" Version="2.0.0-dev-00118" />
     <PackageReference Include="Pivotal.Discovery.ClientCore" Version="2.0.0-dev-00114" />
-    <PackageReference Include="Steeltoe.CloudFoundry.ConnectorCore" version="2.0.0-dev-00193" />
+    <PackageReference Include="Steeltoe.CloudFoundry.ConnectorCore" version="2.0.0-dev-00197" />
     <PackageReference Include="Steeltoe.Security.DataProtection.RedisCore" version="2.0.0-dev-00081" />
     <PackageReference Include="Steeltoe.Security.Authentication.CloudFoundryCore" Version="2.0.0-dev-00081" />
-    <PackageReference Include="Steeltoe.Management.CloudFoundryCore" Version="2.0.0-dev-00052" />
-    <PackageReference Include="GitInfo" Version="2.0.1" />
+    <PackageReference Include="Steeltoe.Management.CloudFoundryCore" Version="2.0.0-dev-00055" />
+    <PackageReference Include="GitInfo" Version="2.0.8" />
     <PackageReference Include="Syncfusion.Compression.NETStandard20" Version="15.4200.0.17" />
     <PackageReference Include="Syncfusion.EJ.Pivot" Version="15.4600.0.17" />
     <PackageReference Include="Syncfusion.XlsIO.NETStandard20" Version="15.4200.0.17" />
@@ -29,9 +29,9 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(BUILD)' == ''">
-    <PackageReference Include="Steeltoe.CircuitBreaker.HystrixCore" Version="2.0.0-dev-00081" />
-    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsStreamCore" Version="2.0.0-dev-00081" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.0.1" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.HystrixCore" Version="2.0.0-dev-00084" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsStreamCore" Version="2.0.0-dev-00084" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.1.0-pre2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(BUILD)' == 'LOCAL'">
