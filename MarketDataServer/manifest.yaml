@@ -2,10 +2,9 @@
 applications:
 - name: mds
   random-route: true
-  memory: 1G
-  stack: cflinuxfs2
-  health-check-type: port
-  buildpack: dotnet_core_buildpack
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
+  env:
+    ASPNETCORE_ENVIRONMENT: Production
   services:
-    - eureka 
-    - rabbitmq 
+   - myDiscoveryService
+   - myRabbitMqService
