@@ -11,8 +11,8 @@
     <p class="lead">This application features all of the features available for .NET developers on Cloud Foundry.  Whether you are re-platforming legacy applications or creating the next generation cloud native applications, PCF can accelerate your time to market while reducing the cost to operate.</p>
     <p><a href="http://apps.sys.islands.cloud" class="btn btn-primary btn-lg">Learn More &raquo;</a></p>
 </div>
-<body>
-    <script>
+
+<script>
         $(() => {
             var OMS_URL = "@ViewBag.OMS";
             var MDS_URL = "@ViewBag.MDS";
@@ -64,7 +64,7 @@
                 })
 
                 self.NewOrder = () => {
-                     
+
                     self.order.clOrdID(guid());
                     //self.order.orderId(guid());
                     $.ajax({
@@ -178,32 +178,19 @@
                 $(this).addClass('negative_value');
             }});
         });
-    </script>
+</script>
 
-    <form>
-        <fieldset>
-            <legend>Client Info</legend>
-            <div class="row">
-                <div class="large-6 columns">
-                    <div class="row collapse prefix-radius">
-                        <div class="small-3 columns">
-                            <span class="prefix">Client ID:</span>
-                        </div>
-                        <div class="small-9 columns">
-                            <input class="data-bind" data-bind="value: order.clientID">
-                        </div>
+<form>
+    <fieldset>
+        <legend>Client Info</legend>
+        <div class="row">
+            <div class="large-6 columns">
+                <div class="row collapse prefix-radius">
+                    <div class="small-3 columns">
+                        <span class="prefix">Client ID:</span>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="large-6 columns">
-                        <div class="row collapse prefix-radius">
-                            <div class="small-3 columns">
-                                <span class="prefix">Qty:</span>
-                            </div>
-                            <div class="small-9 columns">
-                                <input class="data-bind" data-bind="value: order.orderQty">
-                            </div>
-                        </div>
+                    <div class="small-9 columns">
+                        <input class="data-bind" data-bind="value: order.clientID">
                     </div>
                 </div>
             </div>
@@ -211,164 +198,176 @@
                 <div class="large-6 columns">
                     <div class="row collapse prefix-radius">
                         <div class="small-3 columns">
-                            <span class="prefix">Price:</span>
+                            <span class="prefix">Qty:</span>
                         </div>
                         <div class="small-9 columns">
-                            <input class="data-bind" data-bind="value: order.price, enable: isPriceEnabled">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="large-6 columns">
-                        <div class="row collapse prefix-radius">
-                            <div class="small-3 columns">
-                                <span class="prefix">Side:</span>
-                            </div>
-                            <div class="small-9 columns">
-                                <select data-bind="options: sides, value: order.side"></select>
-                            </div>
+                            <input class="data-bind" data-bind="value: order.orderQty">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="large-6 columns">
-                    <div class="row collapse prefix-radius">
-                        <div class="small-3 columns">
-                            <span class="prefix">Type:</span>
-                        </div>
-                        <div class="small-9 columns">
-                            <select data-bind="options: orderTypes, value: order.ordType"></select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="large-6 columns">
-                        <div class="row collapse prefix-radius">
-                            <div class="small-3 columns">
-                                <span class="prefix">Symbol:</span>
-                            </div>
-                            <div class="small-9 columns">
-                                <select data-bind="options: symbols, value: order.symbol"></select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button data-bind="click: NewOrder">Place Order</button>
-        </fieldset>
-    </form><br>
-    <h3>Orders</h3>
-    <div class="tab-container">
-        <ul class="tabs" data-tab="">
-            <li class="tab-title active">
-                <a href="#panel1">Open</a>
-            </li>
-            <li class="tab-title">
-                <a href="#panel2">History</a>
-            </li>
-        </ul>
-    </div>
-    <div class="tabs-content">
-        <div class="content active" id="panel1">
-            <table width="50%">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Symbol</th>
-                        <th>Type</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>LastPx</th>
-                        <th>LastQty</th>
-                        <th>CumQty</th>
-                        <th>LastCommission</th>
-                        <th>Side</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: openOrders">
-                    <tr>
-                        <td data-bind="text: orderId"></td>
-                        <td data-bind="text: symbol"></td>
-                        <td data-bind="text: ordType"></td>
-                        <td data-bind="text: orderQty"></td>
-                        <td data-bind="text: price"></td>
-                        <td data-bind="text: lastPx"></td>
-                        <td data-bind="text: lastQty"></td>
-                        <td data-bind="text: cumQty"></td>
-                        <td data-bind="text: lastCommission"></td>
-                        <td data-bind="text: side"></td>
-                        <td data-bind="text: ordStatus"></td>
-                        <td><button data-bind="click: $parent.CancelOrder.bind($data, $data.orderId())">Cancel</button></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
-        <div class="content" id="panel2">
-            <table width="50%">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Symbol</th>
-                        <th>Type</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>LastPx</th>
-                        <th>LastQty</th>
-                        <th>CumQty</th>
-                        <th>LastCommission</th>
-                        <th>Side</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: completedOrders">
-                    <tr>
-                        <td data-bind="text: orderId"></td>
-                        <td data-bind="text: symbol"></td>
-                        <td data-bind="text: ordType"></td>
-                        <td data-bind="text: orderQty"></td>
-                        <td data-bind="text: price"></td>
-                        <td data-bind="text: lastPx"></td>
-                        <td data-bind="text: lastQty"></td>
-                        <td data-bind="text: cumQty"></td>
-                        <td data-bind="text: lastCommission"></td>
-                        <td data-bind="text: side"></td>
-                        <td data-bind="text: ordStatus"></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="large-6 columns">
+                <div class="row collapse prefix-radius">
+                    <div class="small-3 columns">
+                        <span class="prefix">Price:</span>
+                    </div>
+                    <div class="small-9 columns">
+                        <input class="data-bind" data-bind="value: order.price, enable: isPriceEnabled">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-6 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                            <span class="prefix">Side:</span>
+                        </div>
+                        <div class="small-9 columns">
+                            <select data-bind="options: sides, value: order.side"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <div class="row collapse prefix-radius">
+                    <div class="small-3 columns">
+                        <span class="prefix">Type:</span>
+                    </div>
+                    <div class="small-9 columns">
+                        <select data-bind="options: orderTypes, value: order.ordType"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-6 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                            <span class="prefix">Symbol:</span>
+                        </div>
+                        <div class="small-9 columns">
+                            <select data-bind="options: symbols, value: order.symbol"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button data-bind="click: NewOrder">Place Order</button>
+    </fieldset>
+</form><br>
+<h3>Orders</h3>
+<div class="tab-container">
+    <ul class="tabs" data-tab="">
+        <li class="tab-title active">
+            <a href="#panel1">Open</a>
+        </li>
+        <li class="tab-title">
+            <a href="#panel2">History</a>
+        </li>
+    </ul>
+</div>
+<div class="tabs-content">
+    <div class="content active" id="panel1">
+        <table width="50%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Symbol</th>
+                    <th>Type</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>LastPx</th>
+                    <th>LastQty</th>
+                    <th>CumQty</th>
+                    <th>LastCommission</th>
+                    <th>Side</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: openOrders">
+                <tr>
+                    <td data-bind="text: orderId"></td>
+                    <td data-bind="text: symbol"></td>
+                    <td data-bind="text: ordType"></td>
+                    <td data-bind="text: orderQty"></td>
+                    <td data-bind="text: price"></td>
+                    <td data-bind="text: lastPx"></td>
+                    <td data-bind="text: lastQty"></td>
+                    <td data-bind="text: cumQty"></td>
+                    <td data-bind="text: lastCommission"></td>
+                    <td data-bind="text: side"></td>
+                    <td data-bind="text: ordStatus"></td>
+                    <td><button data-bind="click: $parent.CancelOrder.bind($data, $data.orderId())">Cancel</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <h3>Ticker</h3>
+    <div class="content" id="panel2">
+        <table width="50%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Symbol</th>
+                    <th>Type</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>LastPx</th>
+                    <th>LastQty</th>
+                    <th>CumQty</th>
+                    <th>LastCommission</th>
+                    <th>Side</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: completedOrders">
+                <tr>
+                    <td data-bind="text: orderId"></td>
+                    <td data-bind="text: symbol"></td>
+                    <td data-bind="text: ordType"></td>
+                    <td data-bind="text: orderQty"></td>
+                    <td data-bind="text: price"></td>
+                    <td data-bind="text: lastPx"></td>
+                    <td data-bind="text: lastQty"></td>
+                    <td data-bind="text: cumQty"></td>
+                    <td data-bind="text: lastCommission"></td>
+                    <td data-bind="text: side"></td>
+                    <td data-bind="text: ordStatus"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<h3>Ticker</h3>
 <table width="50%">
     <thead>
-    <tr>
-        <th>Symbol</th>
-        <th>Price</th>
-        <th>Change</th>
-        <th>Change (%)</th>
-        <th>Volume</th>
-    </tr>
+        <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Change</th>
+            <th>Change (%)</th>
+            <th>Volume</th>
+        </tr>
     </thead>
     <tbody data-bind="foreach: ticks">
-    <tr>
-        <td data-bind="text: symbol"></td>
-        <td data-bind="text: price"></td>
-        <td class="change_value_element" data-bind="text: change"></td>
-        <td class="change_percentage_element" data-bind="text: changePercentage"></td>
-        <td data-bind="text: volume"></td>
-    </tr>
+        <tr>
+            <td data-bind="text: symbol"></td>
+            <td data-bind="text: price"></td>
+            <td class="change_value_element" data-bind="text: change"></td>
+            <td class="change_percentage_element" data-bind="text: changePercentage"></td>
+            <td data-bind="text: volume"></td>
+        </tr>
     </tbody>
 </table>
 <div id="reject">Order was rejected</div>
-    <script src="js/vendor/jquery.js">
-    </script>
-    <script src="js/foundation.min.js">
-    </script>
-    <script>
-        $(document).foundation();
-        
-    </script>
-</body>
+<script src="js/vendor/jquery.js">
+</script>
+<script src="js/foundation.min.js">
+</script>
+<script>
+    $(document).foundation();
+
+</script>
