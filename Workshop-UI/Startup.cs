@@ -36,6 +36,7 @@ using Pivotal.Extensions.Configuration.ConfigServer;
 using System.Linq;
 using Pivotal.Helper;
 using Steeltoe.Management.Endpoint.Health;
+using Fortune_Service_Model.Services;
 // Lab11 End
 
 

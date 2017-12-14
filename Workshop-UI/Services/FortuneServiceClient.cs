@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 
 // Lab07 Start
 using Steeltoe.Common.Discovery;
+using Fortune_Service_Model.Services;
 // Lab07 End
 
 namespace Workshop_UI.Services

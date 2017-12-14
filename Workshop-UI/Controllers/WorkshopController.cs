@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using Workshop_UI.ViewModels.Workshop;
+using Fortune_Service_Model.Services;
 
 namespace Workshop_UI.Controllers
 {
