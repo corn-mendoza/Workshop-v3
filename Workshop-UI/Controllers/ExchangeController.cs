@@ -33,14 +33,16 @@ namespace Workshop_UI.Controllers
         {
             if (discoveryClient != null)
             {
+                _logger?.LogDebug("Index");
+
                 var omsUrl = discoveryClient.GetInstances("ORDERMANAGER")?.FirstOrDefault()?.Uri?.ToString() ?? "http://localhost:8080";
                 omsUrl = omsUrl.Replace("https://", "http://"); // need to force http due to self signed cert
 
-                Console.WriteLine($"Order Manager URL: {omsUrl}");
+                _logger?.LogInformation($"Order Manager URL: {omsUrl}");
 
                 ViewBag.OMS = omsUrl;
                 ViewBag.MDS = discoveryClient.GetInstances("MDS")?.FirstOrDefault()?.Uri?.ToString() ?? "http://localhost:53809";
-                Console.WriteLine($"Market Data Server URL: {ViewBag.MDS}");
+                _logger?.LogInformation($"Market Data Server URL: {ViewBag.MDS}");
             }
             return View();
         }
