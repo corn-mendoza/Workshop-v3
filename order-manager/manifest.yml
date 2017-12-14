@@ -13,3 +13,4 @@ env:
 services:
  - myMySqlService 
  - myDiscoveryService
+ - myRabbitMQService
