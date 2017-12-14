@@ -54,11 +54,16 @@ namespace Workshop_UI.Controllers
             ViewData["appName"] = Config["vcap:application:application_name"];
             ViewData["uri0"] = Config["vcap:application:application_uris:0"];
             ViewData["disk"] = Config["vcap:application:limits:disk"];
-
+            ViewData["sourceString"] = "appsettings.json";
             IConfigurationSection configurationSection = Config.GetSection("ConnectionStrings");
             if (configurationSection != null)
-                ViewData["configSvrString"] = configurationSection.GetValue<string>("AttendeeContext");
-
+            {
+                if (configurationSection.GetValue<string>("AttendeeContext") != null)
+                {
+                    ViewData["sourceString"] = "Config Server";
+                }
+            }
+                
             ViewData["jsonDBString"] = Config.GetConnectionString("AttendeeContext").Replace("PCF!Password", "*****");
             var cfe = new CFEnvironmentVariables();
             var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext").Replace("PCF!Password", "*****");
