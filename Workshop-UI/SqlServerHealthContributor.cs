@@ -11,9 +11,9 @@ namespace Workshop_UI
 {
     public class SqlServerHealthContributor : IHealthContributor
     {
-        AttendeeContext _context;
+        DbContext _context;
         ILogger<SqlServerHealthContributor> _logger;
-        public SqlServerHealthContributor(AttendeeContext dbContext, ILogger<SqlServerHealthContributor> logger)
+        public SqlServerHealthContributor(DbContext dbContext, ILogger<SqlServerHealthContributor> logger)
         {
             _context = dbContext;
             _logger = logger;
@@ -26,7 +26,7 @@ namespace Workshop_UI
             _logger.LogInformation("Checking MSSQL connection health!");
 
             Health result = new Health();
-            result.Details.Add("database", "MSSQL");
+            result.Details.Add("Database", $"MSSQL: {_context.GetType().Name} ");
             SqlConnection _connection = null;
             try
             {
@@ -36,10 +36,10 @@ namespace Workshop_UI
                     _connection.Open();
                     DbCommand cmd = new SqlCommand("SELECT 1;", _connection);
                     var qresult = cmd.ExecuteScalar();
-                    result.Details.Add("result", qresult);
-                    result.Details.Add("status", HealthStatus.UP.ToString());
+                    result.Details.Add("Result", qresult);
+                    result.Details.Add("Status", HealthStatus.UP.ToString());
                     result.Status = HealthStatus.UP;
-                    _logger.LogInformation("MSSQL Server connection up!");
+                    _logger.LogInformation($"MSSQL Server  {_context.GetType().Name} connection up!");
                 }
 
             }
