@@ -57,10 +57,15 @@ namespace Fortune_Teller_Service.Controllers
         public async Task<Fortune> RandomFortuneAsync()
         {
             _logger?.LogDebug("RandomFortuneAsync");
-
+            var idx = 0;
+            var _index = Environment.GetEnvironmentVariable("INSTANCE_INDEX");
+            if (string.IsNullOrEmpty(_index))
+            {
+                idx = int.Parse(_index);
+            }
             // Lab05 Start
             var entity = await _fortunes.RandomFortuneAsync();
-            return new Fortune() { Id = entity.Id, Text = entity.Text };
+            return new Fortune() { Id = entity.Id, InstanceIndex = idx, Text = entity.Text };
             // Lab05 End
         }
     }
