@@ -77,8 +77,8 @@ namespace Workshop_UI
             // Lab05 End
 
             // Add for Service Options
-            services.Configure<CloudFoundryServicesOptions>(Configuration);
-            services.Configure<CloudFoundryApplicationOptions>(Configuration);
+            //services.Configure<CloudFoundryServicesOptions>(Configuration);
+            //services.Configure<CloudFoundryApplicationOptions>(Configuration);
             services.ConfigureCloudFoundryOptions(Configuration);
             //
 
