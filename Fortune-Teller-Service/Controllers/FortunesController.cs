@@ -3,6 +3,8 @@ using Fortune_Teller_Service.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,13 +15,19 @@ namespace Fortune_Teller_Service.Controllers
     public class FortunesController : Controller
     {
         ILogger<FortunesController> _logger;
-
+        CloudFoundryServicesOptions CloudFoundryServices { get; set; }
+        CloudFoundryApplicationOptions CloudFoundryApplication { get; set; }
         // Lab05 Start
         private IFortuneRepository _fortunes;
-        public FortunesController(ILogger<FortunesController> logger, IFortuneRepository fortunes)
+        public FortunesController(ILogger<FortunesController> logger, IFortuneRepository fortunes,
+            IOptions<CloudFoundryApplicationOptions> appOptions,
+            IOptions<CloudFoundryServicesOptions> servOptions)
         {
             _logger = logger;
             _fortunes = fortunes;
+
+            CloudFoundryServices = servOptions.Value;
+            CloudFoundryApplication = appOptions.Value;
         }
         // Lab05 End
 
@@ -32,12 +40,9 @@ namespace Fortune_Teller_Service.Controllers
         public async Task<List<Fortune>> AllFortunesAsync()
         {
             _logger?.LogDebug("AllFortunesAsync");
-            var idx = 0;
-            var _index = Environment.GetEnvironmentVariable("INSTANCE_INDEX");
-            if (string.IsNullOrEmpty(_index))
-            {
-                idx = int.Parse(_index);
-            }
+
+            var idx = CloudFoundryApplication.InstanceIndex;
+
             // Lab05 Start
             var entities = await _fortunes.GetAllAsync();
             var result = new List<Fortune>();
@@ -57,12 +62,9 @@ namespace Fortune_Teller_Service.Controllers
         public async Task<Fortune> RandomFortuneAsync()
         {
             _logger?.LogDebug("RandomFortuneAsync");
-            var idx = 0;
-            var _index = Environment.GetEnvironmentVariable("INSTANCE_INDEX");
-            if (string.IsNullOrEmpty(_index))
-            {
-                idx = int.Parse(_index);
-            }
+
+            var idx = CloudFoundryApplication.InstanceIndex;
+
             // Lab05 Start
             var entity = await _fortunes.RandomFortuneAsync();
             return new Fortune() { Id = entity.Id, InstanceIndex = idx, Text = entity.Text };

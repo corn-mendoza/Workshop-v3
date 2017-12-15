@@ -24,6 +24,7 @@ using Steeltoe.Security.Authentication.CloudFoundry;
 // Lab11 Start
 using Steeltoe.Management.Endpoint.Health;
 using Steeltoe.Management.CloudFoundry;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 // Lab11 End
 
 namespace Fortune_Teller_Service
@@ -82,6 +83,8 @@ namespace Fortune_Teller_Service
             services.AddSingleton<IHealthContributor, MySqlHealthContributor>();
             services.AddCloudFoundryActuators(Configuration);
             // Lab11 End
+
+            services.ConfigureCloudFoundryOptions(Configuration);
 
             services.AddMvc();
         }
