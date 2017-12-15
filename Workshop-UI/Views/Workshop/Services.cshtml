@@ -1,4 +1,6 @@
 ﻿@*@model Workshop_UI.Services.Fortune*@
+@using Syncfusion.JavaScript;
+@using Syncfusion.JavaScript.DataVisualization;
 @model CloudFoundryViewModel
 @{
     ViewData["Title"] = "Cloud Services";
@@ -17,24 +19,76 @@
 </div>
 <div class="panel-primary" align="center">
     <h3>Your New Fortune sent from the Fortune Service</h3>
-    <h4>@ViewData["MyFortune"]</h4>
-    <h5>URL: @ViewData["FortuneUrl"]</h5>
-    <h5>@ViewData["FortuneIndex"]</h5>
-    <h5>@ViewData["InstanceCount"]</h5>
+    <i><h4>@ViewData["MyFortune"]</h4></i>
     @*<h3>@Model.Text</h3>*@
 </div>
-<div class="panel-body">
-    <h2>Bound Services for Application</h2>
+<div class="row">
+    <div class="col-md-3">
+        <h4>Load Balancing and Autoscaling</h4>
+        <b><h5>Web Application</h5></b>
+        <h5>Instance Count: </h5>
+               <ej-digital-gauge id="ScaleGauge" is-responsive="true" label-color="#8c8c8c" width="100" height="20" load="loadGaugeTheme">
+                    <e-items>
+                        <e-digital-gauge-items value="@ViewData["InstanceCount"]">
+                            <e-segment-settings width="1" spacing="0" color="#8c8c8c"></e-segment-settings>
+                            <e-character-settings opacity="0.8"></e-character-settings>
+                            <e-digital-position x="52" y="52"></e-digital-position>
+                        </e-digital-gauge-items>
+                    </e-items>
+                </ej-digital-gauge>
+        <b><h5>Web Service</h5></b>
+        <h5>Fortune Index: @ViewData["FortuneIndex"]</h5>
 
-    @foreach (var service in Model.CloudFoundryServices.ServicesList)
-    {
-        <div class="media">
-            <a class="pull-left" href="http://pivotal.io">
-                <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Cloud Foundry" alt="PCF" width="30" height="30" />
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">@service.Label: @service.Name</h4>
-            </div>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Create Load &raquo;</a>
+    </div>
+    <dov class="col-md-3">
+        <div id="linearframe">
+            <ej-bullet-graph id="Bullet2" quantitative-scale-length="475" width="595" qualitative-range-size="32" orientation="@Orientation.Horizontal" flow-direction="@FlowDirection.Forward">
+                <e-bullet-tooltip-settings visible="true" template="Tooltip">
+                </e-bullet-tooltip-settings>
+                <e-qualitative-ranges>
+                    <e-qualitative-range range-end="4"></e-qualitative-range>
+                    <e-qualitative-range range-end="8"></e-qualitative-range>
+                    <e-qualitative-range range-end="10"></e-qualitative-range>
+                </e-qualitative-ranges>
+                <e-quantitative-scale-settings tick-position="@TickPosition.Far" maximum="10" minimum="0" interval="1" minor-ticks-per-interval="4">
+                    <e-location x="110" y="10"></e-location>
+                    <e-major-tick-settings size="13" width="1"></e-major-tick-settings>
+                    <e-minor-tick-settings size="5" width="1"></e-minor-tick-settings>
+                    <e-label-settings position="@LabelPosition.Below" offset="14" size="10"></e-label-settings>
+                    <e-featured-measure-settings width="6"></e-featured-measure-settings>
+                    <e-comparative-measure-settings width="5"></e-comparative-measure-settings>
+                    <e-feature-measures><e-feature-measure comparative-measure="6.7" value="8" category=""></e-feature-measure></e-feature-measures>
+                </e-quantitative-scale-settings>
+                <e-caption-settings text-angle="0" text="Instance Count">
+                    <e-location x="17" y="20"></e-location>
+                    <e-sub-title text-angle="0" text="$ in Thousands">
+                        <e-location x="10" y="35"></e-location>
+                        <e-bullet-font font-family="Segeo UI"></e-bullet-font>
+                    </e-sub-title>
+                </e-caption-settings>
+            </ej-bullet-graph>
         </div>
-    }
+    </dov>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Circuit Breakers and Discovery</h4>
+        <b><h5>Requested URL</h5></b>
+        <h5>@ViewData["FortuneUrl"]</h5>
+        <b><h5>Discovered URL</h5></b>
+        <h5>@ViewData["FortuneDiscoveryUrl"]</h5>
+        <br />
+        <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Hystrix Dashboard &raquo;</a>
+        <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Eureka Dashboard &raquo;</a>
+    </div>
+    <div class="col-md-6">
+        <h4>Current Bound Services</h4>
+        <ul>
+            @foreach (var service in Model.CloudFoundryServices.ServicesList)
+            {
+                <li>@service.Label: @service.Name</li>
+            }
+        </ul>
+    </div>
 </div>

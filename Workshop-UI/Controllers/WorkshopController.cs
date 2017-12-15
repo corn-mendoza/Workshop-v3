@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Steeltoe.Common.Discovery;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using System;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace Workshop_UI.Controllers
         public CloudFoundryServicesOptions CloudFoundryServices { get; set; }
         public CloudFoundryApplicationOptions CloudFoundryApplication { get; set; }
         IOptionsSnapshot<FortuneServiceOptions> _fortunesConfig;
+        IDiscoveryClient discoveryClient;
+
         // Lab09 Start
         private FortuneServiceCommand _fortunes;
         public WorkshopController(
@@ -26,13 +29,16 @@ namespace Workshop_UI.Controllers
             IOptionsSnapshot<FortuneServiceOptions> config,
             FortuneServiceCommand fortunes, 
             IOptions<CloudFoundryApplicationOptions> appOptions,
-            IOptions<CloudFoundryServicesOptions> servOptions)
+            IOptions<CloudFoundryServicesOptions> servOptions,
+            [FromServices] IDiscoveryClient client
+            )
         {
             _logger = logger;
             _fortunes = fortunes;
             CloudFoundryServices = servOptions.Value;
             CloudFoundryApplication = appOptions.Value;
             _fortunesConfig = config;
+            discoveryClient = client;
         }
         // Lab09 End
         
@@ -67,9 +73,10 @@ namespace Workshop_UI.Controllers
                 _idxCount += 1;
 
             HttpContext.Session.SetInt32($"Index{CloudFoundryApplication.InstanceIndex}", _idxCount.GetValueOrDefault(1));
-            ViewData["InstanceCount"] = $"Index{CloudFoundryApplication.InstanceIndex} = {_idxCount.GetValueOrDefault(1)}";
+            ViewData["InstanceCount"] = $"{_idxCount.GetValueOrDefault(1)}";
             ViewData["MyFortune"] = fortune.Text;
-            ViewData["FortuneIndex"] = $"Fortune Service Index = {fortune.InstanceIndex}";
+            ViewData["FortuneIndex"] = $"{fortune.InstanceIndex}";
+            ViewData["FortuneDiscoveryUrl"] = discoveryClient.GetInstances("fortuneService")?[fortune.InstanceIndex]?.Uri?.ToString();
             return View(new CloudFoundryViewModel(
                 CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
                 CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices));
