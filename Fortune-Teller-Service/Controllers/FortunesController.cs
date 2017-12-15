@@ -3,6 +3,7 @@ using Fortune_Teller_Service.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,13 +32,18 @@ namespace Fortune_Teller_Service.Controllers
         public async Task<List<Fortune>> AllFortunesAsync()
         {
             _logger?.LogDebug("AllFortunesAsync");
-
+            var idx = 0;
+            var _index = Environment.GetEnvironmentVariable("INSTANCE_INDEX");
+            if (string.IsNullOrEmpty(_index))
+            {
+                idx = int.Parse(_index);
+            }
             // Lab05 Start
             var entities = await _fortunes.GetAllAsync();
             var result = new List<Fortune>();
             foreach(var entity in entities)
             {
-                result.Add(new Fortune() { Id = entity.Id, Text = entity.Text });
+                result.Add(new Fortune() { Id = entity.Id, InstanceIndex = idx, Text = entity.Text });
             }
             return result;
             // Lab05 End

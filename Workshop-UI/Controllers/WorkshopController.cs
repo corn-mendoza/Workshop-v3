@@ -62,7 +62,14 @@ namespace Workshop_UI.Controllers
             // Lab05 End
 
             HttpContext.Session.SetString("MyFortune", fortune.Text);
+            var _idxCount = HttpContext.Session.GetInt32($"Index{CloudFoundryApplication.InstanceIndex}");
+            if (_idxCount != null)
+                _idxCount += 1;
+
+            HttpContext.Session.SetInt32($"Index{CloudFoundryApplication.InstanceIndex}", _idxCount.GetValueOrDefault(1));
+            ViewData["InstanceCount"] = $"Index{CloudFoundryApplication.InstanceIndex} = {_idxCount.GetValueOrDefault(1)}";
             ViewData["MyFortune"] = fortune.Text;
+            ViewData["FortuneIndex"] = $"Fortune Service Index = {fortune.InstanceIndex}";
             return View(new CloudFoundryViewModel(
                 CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
                 CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices));

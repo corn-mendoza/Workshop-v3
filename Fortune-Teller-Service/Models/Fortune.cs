@@ -6,6 +6,7 @@ namespace Fortune_Teller_Service.Models
     {
         public int Id { get; set; }
         public string Text { get; set; }
+        public int InstanceIndex { get; set; }
         public override string ToString()
         {
             return $"Fortune[{this.Id},{this.Text}]";
