@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FortuneTeller.Models;
+using Microsoft.Extensions.Logging;
 using Steeltoe.CircuitBreaker.Hystrix;
 
 using System.Threading.Tasks;

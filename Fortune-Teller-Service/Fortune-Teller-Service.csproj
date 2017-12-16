@@ -62,5 +62,9 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Fortune-Teller-Models\Fortune-Teller-Models.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿
 using Fortune_Teller_Service.Models;
+using FortuneTeller.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

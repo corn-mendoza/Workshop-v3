@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication;
 using System.Net.Http.Headers;
 
 using Steeltoe.Common.Discovery;
+using FortuneTeller.Models;
 
 namespace FortuneService.Client
 {
