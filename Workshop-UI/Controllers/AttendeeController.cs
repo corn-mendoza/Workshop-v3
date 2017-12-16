@@ -9,6 +9,7 @@ using Workshop_UI.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Pivotal.Helper;
+using Pivotal.Utilities;
 
 namespace Workshop_UI.Controllers
 {
@@ -46,7 +47,7 @@ namespace Workshop_UI.Controllers
                 _dbstring = _connect;
             }
 
-            ViewData["ConnectionString"] = _dbstring.Replace("PCF!Password", "*****");
+            ViewData["ConnectionString"] = StringCleaner.GetDisplayString("Password=", ";", _dbstring, "*****");
             return View(await _context.AttendeeModel.ToListAsync());
         }
 

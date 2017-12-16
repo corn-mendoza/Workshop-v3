@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Pivotal.Helper;
+using Pivotal.Utilities;
 using Steeltoe.Common.Discovery;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using System;
@@ -217,10 +218,10 @@ namespace Workshop_UI.Controllers
                 }
             }
 
-            ViewData["jsonDBString"] = Config.GetConnectionString("AttendeeContext").Replace("PCF!Password", "*****");
+            ViewData["jsonDBString"] = StringCleaner.GetDisplayString("Password=", ";", Config.GetConnectionString("AttendeeContext"),"*****");
             var cfe = new CFEnvironmentVariables();
-            var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext").Replace("PCF!Password", "*****");
-            ViewData["boundDBString"] = _connect;
+            var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext");
+            ViewData["boundDBString"] = StringCleaner.GetDisplayString("Password=", ";", _connect, "*****");
 
             //if (Services.Value != null)
             //{

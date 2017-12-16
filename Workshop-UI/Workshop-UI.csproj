@@ -70,6 +70,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Fortune-Service-Model\Fortune-Service-Client.csproj" />
+    <ProjectReference Include="..\Pivotal-Utilities\Pivotal-Utilities.csproj" />
   </ItemGroup>
   
 </Project>
