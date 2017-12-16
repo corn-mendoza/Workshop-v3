@@ -1,79 +1,70 @@
-﻿@*@model Workshop_UI.Services.Fortune*@
-@using Syncfusion.JavaScript;
+﻿@using Syncfusion.JavaScript;
 @using Syncfusion.JavaScript.DataVisualization;
 @model CloudFoundryViewModel
 @{
     ViewData["Title"] = "Cloud Services";
 }
-<div class="jumbotron">
+<div class="panel-heading">
     <div class="media">
         <a class="pull-left" href="http://pivotal.io">
-            <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Cloud Foundry" alt="PCF" width="70" height="70" />
+            <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Cloud Foundry" alt="PCF" width="40" height="40" />
         </a>
         <div class="media-body">
-            <h1 class="media-heading">Cloud Patterns for .NET</h1>
+            <h2 class="media-heading">Cloud Patterns for .NET</h2>
         </div>
     </div>
     <p class="lead">Cloud Native Design Patterns using Spring Cloud Services and Steeltoe</p>
-    <p class="lead">Designing applications to run natively in the cloud can be hard. Steeltoe can help developers quickly implement these design patterns by leveraging configuration services, service discovery, circuit breakers, and management services available in Spring Cloud Services. .</p>
+    <p class="body-content">Designing applications to run natively in the cloud can be hard. Steeltoe can help developers quickly implement these design patterns by leveraging configuration services, service discovery, circuit breakers, and management services available in Spring Cloud Services.</p>
 </div>
 <div class="panel-primary" align="center">
     <h3>Your New Fortune sent from the Fortune Service</h3>
-    <i><h4>@ViewData["MyFortune"]</h4></i>
-    @*<h3>@Model.Text</h3>*@
+    <h4><i>@ViewData["MyFortune"]</i></h4>
 </div>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
         <h4>Load Balancing and Autoscaling</h4>
-        <b><h5>Web Application</h5></b>
-        <h5>Instance Count: </h5>
-               <ej-digital-gauge id="ScaleGauge" is-responsive="true" label-color="#8c8c8c" width="100" height="20" load="loadGaugeTheme">
-                    <e-items>
-                        <e-digital-gauge-items value="@ViewData["InstanceCount"]">
-                            <e-segment-settings width="1" spacing="0" color="#8c8c8c"></e-segment-settings>
-                            <e-character-settings opacity="0.8"></e-character-settings>
-                            <e-digital-position x="52" y="52"></e-digital-position>
-                        </e-digital-gauge-items>
-                    </e-items>
-                </ej-digital-gauge>
-        <b><h5>Web Service</h5></b>
-        <h5>Fortune Index: @ViewData["FortuneIndex"]</h5>
-
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Create Load &raquo;</a>
+        <h5><b>Web Application</b></h5>
+        <h5>Application: @Model.CloudFoundryApplication.ApplicationName</h5>
+        <h5>Instance Index: @Model.CloudFoundryApplication.Instance_Index</h5>
+        <h5>Instance IP: @Model.CloudFoundryApplication.InstanceIP</h5>
+        <h5>Instance ID: @Model.CloudFoundryApplication.InstanceId</h5>
+        <h5>Instance Port: @Model.CloudFoundryApplication.Port</h5>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh &raquo;</a>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
     </div>
-    <dov class="col-md-3">
-        <div id="linearframe">
-            <ej-bullet-graph id="Bullet2" quantitative-scale-length="475" width="595" qualitative-range-size="32" orientation="@Orientation.Horizontal" flow-direction="@FlowDirection.Forward">
-                <e-bullet-tooltip-settings visible="true" template="Tooltip">
-                </e-bullet-tooltip-settings>
-                <e-qualitative-ranges>
-                    <e-qualitative-range range-end="4"></e-qualitative-range>
-                    <e-qualitative-range range-end="8"></e-qualitative-range>
-                    <e-qualitative-range range-end="10"></e-qualitative-range>
-                </e-qualitative-ranges>
-                <e-quantitative-scale-settings tick-position="@TickPosition.Far" maximum="10" minimum="0" interval="1" minor-ticks-per-interval="4">
-                    <e-location x="110" y="10"></e-location>
-                    <e-major-tick-settings size="13" width="1"></e-major-tick-settings>
-                    <e-minor-tick-settings size="5" width="1"></e-minor-tick-settings>
-                    <e-label-settings position="@LabelPosition.Below" offset="14" size="10"></e-label-settings>
-                    <e-featured-measure-settings width="6"></e-featured-measure-settings>
-                    <e-comparative-measure-settings width="5"></e-comparative-measure-settings>
-                    <e-feature-measures><e-feature-measure comparative-measure="6.7" value="8" category=""></e-feature-measure></e-feature-measures>
-                </e-quantitative-scale-settings>
-                <e-caption-settings text-angle="0" text="Instance Count">
-                    <e-location x="17" y="20"></e-location>
-                    <e-sub-title text-angle="0" text="$ in Thousands">
-                        <e-location x="10" y="35"></e-location>
-                        <e-bullet-font font-family="Segeo UI"></e-bullet-font>
-                    </e-sub-title>
-                </e-caption-settings>
-            </ej-bullet-graph>
+    @foreach (var _key in Model.AppInstanceCounts.Keys)
+    {
+        <div class="col-md-3">
+            <center>
+                <ej-circular-gauge id="CircularGauge@_key" is-responsive="true" load="loadGaugeTheme" background-color="transparent" radius="90" width="220" height="200">
+                    <e-circular-scale-collections>
+                        <e-circular-scales radius="70" minimum="0" maximum="120" major-interval-value="20" minor-interval-value="10" show-scale-bar="true" size="1" show-ranges="true">
+                            <e-pointer-cap radius="10"></e-pointer-cap>
+                            <e-circular-range-collections>
+                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="0" end-value="70"></e-circular-ranges>
+                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="70" end-value="110" background-color="red">
+                                </e-circular-ranges>
+                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="110" end-value="120" background-color="yellow">
+                                </e-circular-ranges>
+                            </e-circular-range-collections>
+                            <e-pointer-collections>
+                                <e-pointers value="@Convert.ToDouble(Model.AppInstanceCounts.GetValueOrDefault(_key, 0));" length="60" width="8" show-back-needle="true" back-needle-length="15"></e-pointers>
+                            </e-pointer-collections>
+                        </e-circular-scales>
+                    </e-circular-scale-collections>
+                </ej-circular-gauge>
+                <h4>@Model.AppInstanceCounts.GetValueOrDefault(_key, 0)</h4>
+                <h5><b>Instance @_key</b></h5>
+            </center>
         </div>
-    </dov>
+    }
 </div>
+<div class="clearfix"></div>
 <div class="row">
     <div class="col-md-6">
         <h4>Circuit Breakers and Discovery</h4>
+        <h5><b>Web Service</b></h5>
+        <h5>Fortune Service Index: @ViewData["FortuneIndex"]</h5>
         <b><h5>Requested URL</h5></b>
         <h5>@ViewData["FortuneUrl"]</h5>
         <b><h5>Discovered URL</h5></b>
@@ -81,8 +72,52 @@
         <br />
         <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Hystrix Dashboard &raquo;</a>
         <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Eureka Dashboard &raquo;</a>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Create Load &raquo;</a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+        <ej-chart id="container" can-resize="true" load="loadTheme" >
+            <e-primary-x-axis start-from-zero="false" range-padding="@ChartRangePadding.Auto" edge-label-placement="None" show-next-to-axis-line="false" >
+                <e-title text="Instance"></e-title>
+                <e-range max="@Model.ServiceInstanceCounts.Count" min="-1" interval="1"></e-range>
+            </e-primary-x-axis>
+            <e-primary-y-axis range-padding="@ChartRangePadding.Auto" start-from-zero="false" label-format="{value}" edge-label-placement="None">
+                <e-title text="Count"></e-title>
+                <e-range min="0" max="50" interval="10"></e-range>
+            </e-primary-y-axis>
+            <e-title text="Fortune Service Instance Counts"></e-title>
+            <e-size height="300"></e-size>
+            <e-legend visible="true"></e-legend>
+            <e-common-series-options type="@SeriesType.Column" enable-animation="true">
+                <e-marker shape="@ChartShape.None" visible="false" >
+                    <e-border width="2"></e-border>
+                    <e-Size height="10" width="10"></e-Size>
+                </e-marker>                
+            </e-common-series-options>
+            <e-chart-series>
+                <e-series name="Fortune Service" datasource="@Model.GetServiceInstanceCounts();" x-name="Key" y-name="Value" visible-on-legend="Visible">
+                    <e-marker>
+                        <e-data-label text-position="Middle" visible="true">
+                            <e-font color="white"></e-font>                            
+                        </e-data-label>
+                    </e-marker>
+                    <e-chart-tooltip visible="true" template="Tooltip"></e-chart-tooltip>
+                </e-series>
+            </e-chart-series>
+        </ej-chart>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-4">
+        <h4>Last 10 Fortunes in Cache</h4>
+        <ul>
+            @foreach (var fortune in Model.FortuneHistory)
+            {
+                <li>@fortune</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-4">
         <h4>Current Bound Services</h4>
         <ul>
             @foreach (var service in Model.CloudFoundryServices.ServicesList)
@@ -91,4 +126,51 @@
             }
         </ul>
     </div>
+    <div class="col-md-4">
+        <h4>Available Services from Service Discovery</h4>
+        <ul>
+            @foreach (var service in Model.discoveryClient.Services)
+            {
+                <li>@service</li>
+            }
+        </ul>
+    </div>
 </div>
+<style class="cssStyles">
+    .tooltipDivcontainer {
+        background-color: #E94649;
+        color: white;
+        width: 130px;
+    }
+
+    #Tooltip > div:first-child {
+        float: left;
+    }
+
+    #Tooltip #value {
+        float: right;
+        height: 50px;
+        width: 63px;
+    }
+
+        #Tooltip #value > div {
+            margin: 5px 5px 5px 5px;
+        }
+
+    #Tooltip #efpercentage {
+        font-size: 20px;
+        font-family: segoe ui;
+    }
+
+    #Tooltip #ef {
+        font-size: 12px;
+        font-family: segoe ui;
+    }
+
+    #eficon {
+        background-image: url("../images/chart/eficon.png");
+        height: 60px;
+        width: 60px;
+        background-repeat: no-repeat;
+    }
+</style>
