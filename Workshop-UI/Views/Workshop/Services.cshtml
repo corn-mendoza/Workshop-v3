@@ -20,46 +20,7 @@
     <h3>Your New Fortune sent from the Fortune Service</h3>
     <h4><i>@ViewData["MyFortune"]</i></h4>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <h4>Load Balancing and Autoscaling</h4>
-        <h5><b>Web Application</b></h5>
-        <h5>Application: @Model.CloudFoundryApplication.ApplicationName</h5>
-        <h5>Instance Index: @Model.CloudFoundryApplication.Instance_Index</h5>
-        <h5>Instance IP: @Model.CloudFoundryApplication.InstanceIP</h5>
-        <h5>Instance ID: @Model.CloudFoundryApplication.InstanceId</h5>
-        <h5>Instance Port: @Model.CloudFoundryApplication.Port</h5>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
-    </div>
-    @foreach (var _key in Model.AppInstanceCounts.Keys)
-    {
-        <div class="col-md-3">
-            <center>
-                <ej-circular-gauge id="CircularGauge@_key" is-responsive="true" load="loadGaugeTheme" background-color="transparent" radius="90" width="220" height="200">
-                    <e-circular-scale-collections>
-                        <e-circular-scales radius="70" minimum="0" maximum="120" major-interval-value="20" minor-interval-value="10" show-scale-bar="true" size="1" show-ranges="true">
-                            <e-pointer-cap radius="10"></e-pointer-cap>
-                            <e-circular-range-collections>
-                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="0" end-value="70"></e-circular-ranges>
-                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="70" end-value="110" background-color="red">
-                                </e-circular-ranges>
-                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="110" end-value="120" background-color="yellow">
-                                </e-circular-ranges>
-                            </e-circular-range-collections>
-                            <e-pointer-collections>
-                                <e-pointers value="@Convert.ToDouble(Model.AppInstanceCounts.GetValueOrDefault(_key, 0));" length="60" width="8" show-back-needle="true" back-needle-length="15"></e-pointers>
-                            </e-pointer-collections>
-                        </e-circular-scales>
-                    </e-circular-scale-collections>
-                </ej-circular-gauge>
-                <h4>@Model.AppInstanceCounts.GetValueOrDefault(_key, 0)</h4>
-                <h5><b>Instance @_key</b></h5>
-            </center>
-        </div>
-    }
-</div>
-<div class="clearfix"></div>
+<div class="media-object"><hr /></div>
 <div class="row">
     <div class="col-md-6">
         <h4>Circuit Breakers and Discovery</h4>
@@ -70,9 +31,12 @@
         <b><h5>Discovered URL</h5></b>
         <h5>@ViewData["FortuneDiscoveryUrl"]</h5>
         <br />
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh &raquo;</a>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Create Load &raquo;</a>
+        <br />
         <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Hystrix Dashboard &raquo;</a>
         <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Eureka Dashboard &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Create Load &raquo;</a>
     </div>
     <div class="col-md-4">
         <ej-chart id="container" can-resize="true" load="loadTheme" >
@@ -82,7 +46,7 @@
             </e-primary-x-axis>
             <e-primary-y-axis range-padding="@ChartRangePadding.Auto" start-from-zero="false" label-format="{value}" edge-label-placement="None">
                 <e-title text="Count"></e-title>
-                <e-range min="0" max="50" interval="10"></e-range>
+                <e-range min="0" max="@(Model.GetServiceInstanceCounts().Max(w=> w.Value) + 10);" interval="5"></e-range>
             </e-primary-y-axis>
             <e-title text="Fortune Service Instance Counts"></e-title>
             <e-size height="300"></e-size>
@@ -97,7 +61,7 @@
                 <e-series name="Fortune Service" datasource="@Model.GetServiceInstanceCounts();" x-name="Key" y-name="Value" visible-on-legend="Visible">
                     <e-marker>
                         <e-data-label text-position="Middle" visible="true">
-                            <e-font color="white"></e-font>                            
+                            <e-font color="white" ></e-font>                            
                         </e-data-label>
                     </e-marker>
                     <e-chart-tooltip visible="true" template="Tooltip"></e-chart-tooltip>

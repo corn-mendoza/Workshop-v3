@@ -15,11 +15,11 @@ namespace Workshop_UI.Controllers
     public class AttendeeController : Controller
     {
         private readonly AttendeeContext _context;
-        ILogger<ConfigurationController> _logger;
+        ILogger<AttendeeController> _logger;
         private IConfiguration Config { get; set; }
 
 
-        public AttendeeController(ILogger<ConfigurationController> logger, IConfiguration config, AttendeeContext context)
+        public AttendeeController(ILogger<AttendeeController> logger, IConfiguration config, AttendeeContext context)
         {
             _context = context;
             _logger = logger;

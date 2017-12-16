@@ -72,8 +72,4 @@
     <ProjectReference Include="..\Fortune-Service-Model\Fortune-Service-Client.csproj" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-  
 </Project>

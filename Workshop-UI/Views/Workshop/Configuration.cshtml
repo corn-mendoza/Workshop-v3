@@ -1,0 +1,42 @@
+﻿<div class="panel-heading">
+    <div class="media">
+        <a class="pull-left" href="http://pivotal.io">
+            <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Cloud Foundry" alt="PCF" width="40" height="40" />
+        </a>
+        <div class="media-body">
+            <h2 class="media-heading">Platform for .NET</h2>
+        </div>
+    </div>
+    <p class="lead">Managing configuration information for applications</p>
+    <p class="body-content">Strict separation of config from code” has become a cloud mandate, but that begs the question, where do you put it? And once you’ve externalized your config from your app, how do you track who changed what, when? Steeltoe leverages Spring Cloud Config Server so you can store your app’s config in a centralized, version-controlled git repo and then load it at runtime.</p>
+</div>
+<div class="row">
+    <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Reload">Reload &raquo;</a>
+</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Application Details</h4>
+            <h5>App ID: @ViewData["appId"]</h5>
+            <h5>App Name: @ViewData["appName"]</h5>
+            <h5>App URI: @ViewData["uri0"]</h5>
+            <h5>Disk Quota: @ViewData["disk"]</h5>
+
+            <h4>Config Server Settings</h4>
+            <h5>spring:cloud:config:uri = @ViewData["Uri"]</h5>
+            <h5>spring:cloud:config:enabled = @ViewData["Enabled"]</h5>
+            <h5>spring:cloud:config:env = @ViewData["Environment"]</h5>
+            <h5>spring:cloud:config:failFast = @ViewData["FailFast"]</h5>
+            <h5>spring:cloud:config:name = @ViewData["Name"]</h5>
+            <h5>spring:cloud:config:label = @ViewData["Label"]</h5>
+            <h5>spring:cloud:config:username = @ViewData["Username"]</h5>
+            <h5>spring:cloud:config:password = @ViewData["Password"]</h5>
+            <h5>spring:cloud:config:access_token_uri = @ViewData["AccessTokenUri"]</h5>
+            <h5>spring:cloud:config:client_id = @ViewData["ClientId"]</h5>
+            <h5>spring:cloud:config:client_secret = @ViewData["ClientSecret"]</h5>
+            <h5>spring:cloud:config:validate_certificates = @ViewData["ValidateCertificates"]</h5>
+
+            <h4>Connection Strings</h4>
+            <h5>@ViewData["sourceString"] = @ViewData["jsonDBString"]</h5>
+            <h5>user provided service = @ViewData["boundDBString"]</h5>
+        </div>
+    </div>
