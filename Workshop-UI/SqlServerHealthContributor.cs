@@ -1,11 +1,10 @@
-﻿using System;
-using Workshop_UI.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.SqlServer.Server;
 using Steeltoe.Management.Endpoint.Health;
+using System;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Workshop_UI.Models;
 
 namespace Workshop_UI
 {

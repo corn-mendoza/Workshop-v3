@@ -167,6 +167,36 @@ namespace Workshop_UI.Controllers
                 fortunes));
         }
 
+        public IActionResult BlueGreen()
+        {
+            _logger?.LogDebug("BlueGreen");
+
+            SortedList<int, int> appInstCount = new SortedList<int, int>();
+            SortedList<int, int> srvInstCount = new SortedList<int, int>();
+            List<string> fortunes = new List<string>();
+
+            var _appInstCount = RedisCacheStore?.GetString("AppInstance");
+            if (!string.IsNullOrEmpty(_appInstCount))
+            {
+                _logger?.LogInformation($"App Session Data: {_appInstCount}");
+                appInstCount = JsonConvert.DeserializeObject<SortedList<int, int>>(_appInstCount);
+            }
+
+            var _count = appInstCount.GetValueOrDefault(CloudFoundryApplication.Instance_Index, 0);
+            appInstCount[CloudFoundryApplication.Instance_Index] = ++_count;
+
+            string output = JsonConvert.SerializeObject(appInstCount);
+            RedisCacheStore?.SetString("AppInstance", output);
+
+            return View(new CloudFoundryViewModel(
+                CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
+                CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+                discoveryClient,
+                appInstCount,
+                srvInstCount,
+                fortunes));
+        }
+
         [HttpPost]
         public async Task<IActionResult> LogOff()
         {
