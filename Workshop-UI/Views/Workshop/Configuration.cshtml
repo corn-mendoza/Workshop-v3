@@ -15,7 +15,21 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Reload">Reload &raquo;</a>
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <center><h4><a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Reload">Reload</a></h4></center>
+    </div>
+    <div class="col-md-2">
+        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("EnvironmentVariablesUrl")" target="_blank"><b>Environment Variables</b></a></h4></center>
+    </div>
+    <div class="col-md-2">
+        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigServerUrl")" target="_blank"><b>Config Server</b></a></h4></center>
+    </div>
+    <div class="col-md-2">
+        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("BuildInfoUrl")" target="_blank"><b>Build Information</b></a></h4></center>
     </div>
 </div>
 <div class="row">

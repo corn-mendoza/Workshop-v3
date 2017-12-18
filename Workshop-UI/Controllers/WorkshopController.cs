@@ -29,6 +29,11 @@ namespace Workshop_UI.Controllers
         IDiscoveryClient discoveryClient;
         IDistributedCache RedisCacheStore { get; set; }
         IConfiguration Config { get; set; }
+
+        SortedList<int, int> appInstCount = new SortedList<int, int>();
+        SortedList<int, int> srvInstCount = new SortedList<int, int>();
+        List<string> fortunes = new List<string>();
+
         // Lab09 Start
         private FortuneServiceCommand _fortunes;
         public WorkshopController(
@@ -66,7 +71,20 @@ namespace Workshop_UI.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
+        public IActionResult ResetServiceStats()
+        {
+            srvInstCount = new SortedList<int, int>();
+
+            return View(new CloudFoundryViewModel(
+            CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
+            CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+            discoveryClient,
+            appInstCount,
+            srvInstCount,
+            fortunes));
+        }
+
         // Lab10 Start
         //[Authorize(Policy = "read.fortunes")] 
         // Lab10 End
@@ -79,10 +97,6 @@ namespace Workshop_UI.Controllers
             // Lab05 Start
             var fortune = await _fortunes.RandomFortuneAsync();
             // Lab05 End
-
-            SortedList<int, int> appInstCount = new SortedList<int, int>();
-            SortedList<int, int> srvInstCount = new SortedList<int, int>();
-            List<string> fortunes = new List<string>();
 
             var _fortuneHistory = RedisCacheStore?.GetString("FortuneHistory");
             if (!string.IsNullOrEmpty(_fortuneHistory))

@@ -10,38 +10,35 @@
             <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Cloud Foundry" alt="PCF" width="40" height="40" />
         </a>
         <div class="media-body">
-            <h2 class="media-heading">The Platform for .NET</h2>
+            <h2 class="media-heading">Zero Downtime</h2>
         </div>
     </div>
-    <p class="lead">Secure, Resilient, and Scalable</p>
-    <p class="body-content">Managing IIS can be a pain. PCF provides a enterprise ready platform for your .NET applications.</p>
+    <p class="lead">Blue/Green Application Deployments</p>
+    <p class="body-content">Deploy your application with no downtime and without impacting your customers.  Zero downtime Blue/Green application deployments are easy on PCF.  See how you can get your weekends back.</p>
 </div>
 <div class="row">
     <div class="col-md-5">
-        <h4>Load Balancing and Autoscaling</h4>
-        <h5><b>Web Application</b></h5>
-        <h5>Application: @Model.CloudFoundryApplication.ApplicationName</h5>
-        <h5>Instance Index: @Model.CloudFoundryApplication.Instance_Index</h5>
-        <h5>Instance IP: @Model.CloudFoundryApplication.InstanceIP</h5>
-        <h5>Instance ID: @Model.CloudFoundryApplication.InstanceId</h5>
-        <h5>Instance Port: @Model.CloudFoundryApplication.Port</h5>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Kill">Kill Instance &raquo;</a>
-    </div>
+        <h4><font color="blue"><b>@Model.CloudFoundryApplication.ApplicationName</b></font></h4>
+            <h5>Instance Index: @Model.CloudFoundryApplication.Instance_Index</h5>
+            <h5>Instance IP: @Model.CloudFoundryApplication.InstanceIP</h5>
+            <h5>Instance ID: @Model.CloudFoundryApplication.InstanceId</h5>
+            <h5>Instance Port: @Model.CloudFoundryApplication.Port</h5>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="BlueGreen">Refresh &raquo;</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
+</div>
     @foreach (var _key in Model.AppInstanceCounts.Keys)
     {
         <div class="col-md-3">
             <center>
                 <ej-circular-gauge id="CircularGauge@_key" is-responsive="true" load="loadGaugeTheme" background-color="transparent" radius="90" width="180" height="170">
                     <e-circular-scale-collections>
-                        <e-circular-scales radius="70" minimum="0" maximum="120" major-interval-value="20" minor-interval-value="10" show-scale-bar="true" size="1" show-ranges="true">
+                        <e-circular-scales radius="70" minimum="0" maximum="1000" major-interval-value="200" minor-interval-value="100" show-scale-bar="true" size="1" show-ranges="true">
                             <e-pointer-cap radius="10"></e-pointer-cap>
                             <e-circular-range-collections>
-                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="0" end-value="70"></e-circular-ranges>
-                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="70" end-value="110" background-color="red">
+                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="0" end-value="900" background-color="blue"></e-circular-ranges>
+                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="900" end-value="1000" background-color="red">
                                 </e-circular-ranges>
-                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="110" end-value="120" background-color="yellow">
+                                <e-circular-ranges size="5" distance-from-scale="-30" start-value="800" end-value="900" background-color="yellow">
                                 </e-circular-ranges>
                             </e-circular-range-collections>
                             <e-pointer-collections>

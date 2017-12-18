@@ -30,46 +30,48 @@
         <h5>@ViewData["FortuneUrl"]</h5>
         <b><h5>Discovered URL</h5></b>
         <h5>@ViewData["FortuneDiscoveryUrl"]</h5>
-        <br />
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Create Load &raquo;</a>
-        <br />
-        <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Hystrix Dashboard &raquo;</a>
-        <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Eureka Dashboard &raquo;</a>
-    </div>
-    <div class="col-md-4">
-        <ej-chart id="container" can-resize="true" load="loadTheme" >
-            <e-primary-x-axis start-from-zero="false" range-padding="@ChartRangePadding.Auto" edge-label-placement="None" show-next-to-axis-line="false" >
-                <e-title text="Instance"></e-title>
-                <e-range max="@Model.ServiceInstanceCounts.Count" min="-1" interval="1"></e-range>
-            </e-primary-x-axis>
-            <e-primary-y-axis range-padding="@ChartRangePadding.Auto" start-from-zero="false" label-format="{value}" edge-label-placement="None">
-                <e-title text="Count"></e-title>
-                <e-range min="0" max="@(Model.GetServiceInstanceCounts().Max(w=> w.Value) + 10);" interval="5"></e-range>
-            </e-primary-y-axis>
-            <e-title text="Fortune Service Instance Counts"></e-title>
-            <e-size height="300"></e-size>
-            <e-legend visible="true"></e-legend>
-            <e-common-series-options type="@SeriesType.Column" enable-animation="true">
-                <e-marker shape="@ChartShape.None" visible="false" >
-                    <e-border width="2"></e-border>
-                    <e-Size height="10" width="10"></e-Size>
-                </e-marker>                
-            </e-common-series-options>
-            <e-chart-series>
-                <e-series name="Fortune Service" datasource="@Model.GetServiceInstanceCounts();" x-name="Key" y-name="Value" visible-on-legend="Visible">
-                    <e-marker>
-                        <e-data-label text-position="Middle" visible="true">
-                            <e-font color="white" ></e-font>                            
-                        </e-data-label>
+        <div class="panel-group">
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="ResetServiceStats">Reset Stats</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="CreateLoad">Create Load</a>
+        </div>
+        <div class="panel-group">
+            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("HystrixDashboardUrl")">Hystrix Dashboard &raquo;</a>
+            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("EurekaDashboardUrl")">Eureka Dashboard &raquo;</a>
+        </div>
+        </div>
+        <div class="col-md-4">
+            <ej-chart id="container" can-resize="true" load="loadTheme">
+                <e-primary-x-axis start-from-zero="false" range-padding="@ChartRangePadding.Auto" edge-label-placement="None" show-next-to-axis-line="false">
+                    <e-title text="Instance"></e-title>
+                    <e-range max="@Model.ServiceInstanceCounts.Count" min="-1" interval="1"></e-range>
+                </e-primary-x-axis>
+                <e-primary-y-axis range-padding="@ChartRangePadding.Auto" start-from-zero="false" label-format="{value}" edge-label-placement="None">
+                    <e-title text="Count"></e-title>
+                    <e-range min="0" max="@(Model.GetServiceInstanceCounts().Max(w=> w.Value) + 10);" interval="25"></e-range>
+                </e-primary-y-axis>
+                <e-title text="Fortune Service Instance Counts"></e-title>
+                <e-size height="300"></e-size>
+                <e-legend visible="true"></e-legend>
+                <e-common-series-options type="@SeriesType.Column" enable-animation="true">
+                    <e-marker shape="@ChartShape.None" visible="false">
+                        <e-border width="2"></e-border>
+                        <e-Size height="10" width="10"></e-Size>
                     </e-marker>
-                    <e-chart-tooltip visible="true" template="Tooltip"></e-chart-tooltip>
-                </e-series>
-            </e-chart-series>
-        </ej-chart>
+                </e-common-series-options>
+                <e-chart-series>
+                    <e-series name="Fortune Service" datasource="@Model.GetServiceInstanceCounts();" x-name="Key" y-name="Value" visible-on-legend="Visible">
+                        <e-marker>
+                            <e-data-label text-position="Middle" visible="true">
+                                <e-font color="white"></e-font>
+                            </e-data-label>
+                        </e-marker>
+                        <e-chart-tooltip visible="true" template="Tooltip"></e-chart-tooltip>
+                    </e-series>
+                </e-chart-series>
+            </ej-chart>
+        </div>
     </div>
-</div>
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-4">
