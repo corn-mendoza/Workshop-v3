@@ -63,20 +63,13 @@
 </div>
 <div class="clearfix"><hr/></div>
 <div class="row">
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/logs" target="_blank"><b>Logging Support</b></a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/trace" target="_blank"><b>Request Tracing</b></a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("PCFMetricsUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Application Metrics</b></a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Health Contributers</b></a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Source Code</b></a></h4></center>
+    <div class="col-md-12">
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/logs" target="_blank"><b>Logging</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/trace" target="_blank"><b>Request Tracing</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("PCFMetricsUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>PCF Metrics</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Health Contributers</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Source Code</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/tasks" target="_blank"><b>Tasks and Jobs</b></a>
     </div>
 </div>
 <style class="cssStyles">
