@@ -23,28 +23,27 @@
 <div class="media-object"><hr /></div>
 <div class="row">
     <div class="col-md-6">
-        <h4>Circuit Breakers and Discovery</h4>
-        <h5><b>Web Service</b></h5>
-        <h5>Fortune Service Index: @ViewData["FortuneIndex"]</h5>
-        <b><h5>Requested URL</h5></b>
+        <h4><b>Service Information</b></h4>
+        <h5>Fortune Service Instance: @ViewData["FortuneIndex"]</h5>
+        <b><h5>Request URL</h5></b>
         <h5>@ViewData["FortuneUrl"]</h5>
-        <b><h5>Discovered URL</h5></b>
+        <b><h5>Service Discovery URL</h5></b>
         <h5>@ViewData["FortuneDiscoveryUrl"]</h5>
         <div class="panel-group">
-            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Refresh">Refresh</a>
             <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="ResetServiceStats">Reset Stats</a>
             <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="CreateLoad">Create Load</a>
         </div>
         <div class="panel-group">
-            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("HystrixDashboardUrl")">Hystrix Dashboard &raquo;</a>
-            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("EurekaDashboardUrl")">Eureka Dashboard &raquo;</a>
+            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("HystrixDashboardUrl")" target="_blank">Hystrix Dashboard &raquo;</a>
+            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("EurekaDashboardUrl")" target="_blank">Eureka Dashboard &raquo;</a>
         </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <ej-chart id="container" can-resize="true" load="loadTheme">
-                <e-primary-x-axis start-from-zero="false" range-padding="@ChartRangePadding.Auto" edge-label-placement="None" show-next-to-axis-line="false">
+                <e-primary-x-axis start-from-zero="false" range-padding="@ChartRangePadding.Auto">
                     <e-title text="Instance"></e-title>
-                    <e-range max="@Model.ServiceInstanceCounts.Count" min="-1" interval="1"></e-range>
+                    <e-range max="@(Model.GetServiceInstanceCounts().Max(w => w.Key) + 1);" min="-1" interval="1"></e-range>
                 </e-primary-x-axis>
                 <e-primary-y-axis range-padding="@ChartRangePadding.Auto" start-from-zero="false" label-format="{value}" edge-label-placement="None">
                     <e-title text="Count"></e-title>

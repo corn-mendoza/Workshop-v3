@@ -18,15 +18,20 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        <h4>Load Balancing and Autoscaling</h4>
-        <h5><b>Web Application</b></h5>
+        <h4><b>Web Application</b></h4>
         <h5>Application: @Model.CloudFoundryApplication.ApplicationName</h5>
+        <h5>Application ID: @Model.CloudFoundryApplication.ApplicationId</h5>
         <h5>Instance Index: @Model.CloudFoundryApplication.Instance_Index</h5>
         <h5>Instance IP: @Model.CloudFoundryApplication.InstanceIP</h5>
         <h5>Instance ID: @Model.CloudFoundryApplication.InstanceId</h5>
         <h5>Instance Port: @Model.CloudFoundryApplication.Port</h5>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Refresh &raquo;</a>
-        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Index">Reset Stats &raquo;</a>
+        <h5>URL</h5>
+        @foreach (var uri in Model.CloudFoundryApplication.Application_Uris)
+    {
+        <h6>@uri</h6>
+}
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Platform">Refresh &raquo;</a>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="ResetApplicationStats">Reset Stats &raquo;</a>
         <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Kill">Kill Instance &raquo;</a>
     </div>
     @foreach (var _key in Model.AppInstanceCounts.Keys)
@@ -59,16 +64,19 @@
 <div class="clearfix"><hr/></div>
 <div class="row">
     <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("AppLogUrl")" target="_blank"><b>Logging Support</b></a></h4></center>
+        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/logs" target="_blank"><b>Logging Support</b></a></h4></center>
     </div>
     <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("AppTracingUrl")" target="_blank"><b>Request Tracing</b></a></h4></center>
+        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)/trace" target="_blank"><b>Request Tracing</b></a></h4></center>
     </div>
     <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("PCFMetricsUrl")" target="_blank"><b>Application Metrics</b></a></h4></center>
+        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("PCFMetricsUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Application Metrics</b></a></h4></center>
     </div>
     <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("HealthMonitorsUrl")" target="_blank"><b>Health Contributers</b></a></h4></center>
+        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Health Contributers</b></a></h4></center>
+    </div>
+    <div class="col-md-2">
+        <center><h4><a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+Model.CloudFoundryApplication.ApplicationId)" target="_blank"><b>Source Code</b></a></h4></center>
     </div>
 </div>
 <style class="cssStyles">

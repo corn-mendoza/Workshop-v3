@@ -23,7 +23,8 @@
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true">
+        @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true">*@
+        <link rel="stylesheet" href="~/css/site.css">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"
                 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
                 crossorigin="anonymous"></script>
@@ -49,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Workshop" asp-action="Index" class="navbar-brand">.NET for PCF</a>
+                <a asp-area="" asp-controller="Workshop" asp-action="Index" class="navbar-brand"><b>PAS.NET</b></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

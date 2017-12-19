@@ -64,25 +64,40 @@ namespace Workshop_UI.Controllers
             return View();
         }
 
-        [HttpGet]
         public IActionResult Steeltoe()
         {
             _logger?.LogDebug("Steeltoe");
             return View();
         }
 
-        [HttpPost]
         public IActionResult ResetServiceStats()
         {
             srvInstCount = new SortedList<int, int>();
 
-            return View(new CloudFoundryViewModel(
-            CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
-            CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
-            discoveryClient,
-            appInstCount,
-            srvInstCount,
-            fortunes));
+            string output2 = JsonConvert.SerializeObject(srvInstCount);
+            RedisCacheStore?.SetString("SrvInstance", output2);
+
+            return RedirectToAction(nameof(WorkshopController.Services), "Workshop");
+        }
+
+        public IActionResult ResetApplicationStats()
+        {
+            appInstCount = new SortedList<int, int>();
+
+            string output = JsonConvert.SerializeObject(appInstCount);
+            RedisCacheStore?.SetString("AppInstance", output);
+
+            return RedirectToAction(nameof(WorkshopController.Platform), "Workshop");
+        }
+
+        public IActionResult ResetBlueGreenStats()
+        {
+            return RedirectToAction(nameof(WorkshopController.BlueGreen), "Workshop"); 
+        }
+
+        public IActionResult Refresh()
+        {
+            return RedirectToAction(nameof(WorkshopController.Services), "Workshop"); ;
         }
 
         // Lab10 Start
@@ -128,14 +143,9 @@ namespace Workshop_UI.Controllers
                 srvInstCount = JsonConvert.DeserializeObject<SortedList<int, int>>(_srvInstCount);
             }
 
-            var _count = appInstCount.GetValueOrDefault(CloudFoundryApplication.Instance_Index, 0);
-            appInstCount[CloudFoundryApplication.Instance_Index] = ++_count;
-
             var _count2 = srvInstCount.GetValueOrDefault(fortune.InstanceIndex, 0);
             srvInstCount[fortune.InstanceIndex] = ++_count2;
             
-            string output = JsonConvert.SerializeObject(appInstCount);
-            RedisCacheStore?.SetString("AppInstance", output);
             string output2 = JsonConvert.SerializeObject(srvInstCount);
             RedisCacheStore?.SetString("SrvInstance", output2);
 
@@ -188,6 +198,8 @@ namespace Workshop_UI.Controllers
             SortedList<int, int> appInstCount = new SortedList<int, int>();
             SortedList<int, int> srvInstCount = new SortedList<int, int>();
             List<string> fortunes = new List<string>();
+
+            ViewData["AppColor"] = WebStyleUtilities.GetColorFromString(CloudFoundryApplication.ApplicationName, "blue");
 
             var _appInstCount = RedisCacheStore?.GetString("AppInstance");
             if (!string.IsNullOrEmpty(_appInstCount))
@@ -322,7 +334,7 @@ namespace Workshop_UI.Controllers
         public IActionResult Kill()
         {
             Environment.Exit(-99);
-            return View();
+            return RedirectToAction(nameof(WorkshopController.Platform), "Workshop"); 
         }
 
 

@@ -40,14 +40,15 @@
     "gulpfile.js",
     "package.json"
   ],
-  "version": "0.9.90",
-  "_release": "0.9.90",
+  "version": "1.0.0-rc.70",
+  "_release": "1.0.0-rc.70",
   "_resolution": {
     "type": "version",
-    "tag": "v0.9.90",
-    "commit": "d0466535263a46bf3b814b900297e837cffc9943"
+    "tag": "v1.0.0-rc.70",
+    "commit": "9288284d5c0397c06a57da7af3911685a1aa092c"
   },
   "_source": "https://github.com/BorisMoore/jsrender.git",
-  "_target": "*",
-  "_originalSource": "jsrender"
+  "_target": "v1.0.0-rc.70",
+  "_originalSource": "jsrender",
+  "_direct": true
 }

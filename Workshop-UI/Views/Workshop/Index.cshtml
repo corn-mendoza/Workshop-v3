@@ -4,15 +4,18 @@
 <div class="jumbotron">
     <div class="media">
         <a class="pull-left" href="http://pivotal.io">
-            <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Dotnet" alt="Dotnet" height="70" width="70" />
+            <img class="" src="~/images/icon_pivotal_generic@2x.png" title="Dotnet" alt="Dotnet" height="40" width="40" />
         </a>
-        <div class="media-body">
-            <h1 class="media-heading">Pivotal Cloud Foundry</h1>
+        <div class="media-body" valign="middle">
+            <h2 class="media-heading">Pivotal Application Services for .NET</h2>
         </div>
     </div>
     <p class="lead">Cloud Ready to Cloud Native</p>
-    <p class="lead">Whether you are supporting legacy applications or developing new microservices on .NET Framework or .NET Core, Pivotal Cloud Foundry can help you focus on your code and not the infrastructure.</p>
-    <p><a href="http://apps.sys.islands.cloud" class="btn btn-primary btn-lg" target="_blank">Apps Manager &raquo;</a></p>
+    <p class="lead">Whether you are supporting legacy applications or developing new microservices on .NET Framework or .NET Core, Pivotal Application Services can help you focus on your code and not the infrastructure.</p>
+    <p>
+        <a href="http://apps.sys.islands.cloud" class="btn btn-primary btn-lg" target="_blank">Apps Manager &raquo;</a>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Exchange" asp-action="Index">PCF Exchange &raquo;</a>
+    </p>
 </div>
 <div><h2>Overview</h2></div>
 <div class="row">
@@ -22,7 +25,7 @@
             Who is Pivotal and What do we do?
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Presentation &raquo;</a>
+            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948" target="_blank">Presentation &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -31,16 +34,17 @@
             Pivotal Cloud Foundry helps you in your journey with .NET applications from "Cloud-Ready" to "Cloud Native".
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Presentation &raquo;</a>
+            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949" target="_blank">Presentation &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
-        <h3>Pivotal Cloud Foundry</h3>
+        <h3>Pivotal Application Service</h3>
         <p>
             Building applications on a secure, highly resilient, and scalable platform is a requirement for enterprise applications. See how Pivotal Cloud Foundry gets you out of the infrastructure and focused on your code.
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Presentation &raquo;</a>
+            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950" target="_blank">Presentation &raquo;</a>
+            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("OpsManagerUrl")" target="_blank">Ops Manager &raquo;</a>
         </p>
     </div>
 </div>
@@ -49,10 +53,11 @@
     <div class="col-md-4">
         <h3>PCF Basics</h3>
         <p>
-            Pivotal Cloud Foundry is easy to use. Deploying applications is as simple as a "cf push"
+            Pivotal Application Services are easy to use. Deploying applications is as simple as a "cf push"
         </p>
         <p>
-            <a class="btn btn-default" href="/PdfViewer/PdfViewerFeatures.aspx">Learn More &raquo;</a>
+            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950" target="_blank">Presentation &raquo;</a>
+            <a class="btn btn-default" href="https://drive.google.com/file/d/0BzJCQqLrHhm-TWg2S1JaWFRKN2s/view" target="_blank">Whiteboard &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -62,6 +67,7 @@
         </p>
         <p>
             <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Presentation &raquo;</a>
+            <a class="btn btn-default" href="https://drive.google.com/file/d/0B6VqHf2tpJ-IUGI5U2NhYzFpamM/view" target="_blank">Whiteboard &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -82,6 +88,7 @@
         </p>
         <p>
             <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Platform">Demo &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -113,9 +120,11 @@
             NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
         </p>
         <p>
-            <div class="btn btn-default">
-                @Html.ActionLink("Config Server", "Index", "ConfigServer")
-            </div>
+            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Configuration">Demo &raquo;</a>
+            @*<div class="btn btn-default">
+            @Html.ActionLink("Config Server", "Configuration", "Workshop")
+        </div>*@
         </p>
     </div>
     <div class="col-md-4">
@@ -126,6 +135,7 @@
         </p>
         <p>
             <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Demo &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -135,6 +145,7 @@
         </p>
         <p>
             <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Services">Demo &raquo;</a>
         </p>
     </div>
 </div>
@@ -156,15 +167,22 @@
         </p>
         <p>
             <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+            <a class="btn btn-default" asp-area="" asp-controller="Attendee" asp-action="Index">Demo &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
         <h3>CI/CD Pipelines</h3>
         <p>
-            You can easily find a web hosting company that offers the right mix of features and price for your applications.
+            Continuous delivery is key attribute to being an Agile organization. Pivotal Application Services can seemlessly integrate into existing CI/CD pipelines to fully automate workload deployments including easy blue-green deployments.
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+            <div class="panel-group">
+                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+                <a class="btn btn-default" href="https://pivotal-workshops.visualstudio.com/Workshop/_build" target="_blank">VSTS Pipelines &raquo;</a>
+            </div>
+            <div class="panel-group">
+                <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="BlueGreen">Blue-Green Demo&raquo;</a>
+            </div>
         </p>
     </div>
 </div>
@@ -180,7 +198,7 @@
         </p>
     </div>
     <div class="col-md-4">
-        <h3>Services</h3>
+        <h3>Marketplace Services</h3>
         <p>
             NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
         </p>

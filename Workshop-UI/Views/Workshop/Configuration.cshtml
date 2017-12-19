@@ -19,17 +19,14 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Reload">Reload</a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("EnvironmentVariablesUrl")" target="_blank"><b>Environment Variables</b></a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigServerUrl")" target="_blank"><b>Config Server</b></a></h4></center>
-    </div>
-    <div class="col-md-2">
-        <center><h4><a class="btn btn-default" href="@Environment.GetEnvironmentVariable("BuildInfoUrl")" target="_blank"><b>Build Information</b></a></h4></center>
+    <div class="col-lg-12">
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+ @ViewData["appId"])/settings" target="_blank"><b>Env Vars</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+ @ViewData["appId"])/settings" target="_blank"><b>Manifest</b></a>
+        <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigServerUrl")" target="_blank"><b>appsettings</b></a>
+        <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigServerUrl")" target="_blank"><b>Config Server</b></a>
+        <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigServerUrl")" target="_blank"><b>Config Repo</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+ @ViewData["appId"])/settings" target="_blank"><b>Build Info</b></a>
+        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+ @ViewData["appId"])/settings" target="_blank"><b>Project File</b></a>
     </div>
 </div>
 <div class="row">
@@ -41,6 +38,7 @@
         <h5>Disk Quota: @ViewData["disk"]</h5>
 
         <h4>Config Server Settings</h4>
+        <h4><a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Reload">Reload</a></h4>
         <h5>spring:cloud:config:uri = @ViewData["Uri"]</h5>
         <h5>spring:cloud:config:enabled = @ViewData["Enabled"]</h5>
         <h5>spring:cloud:config:env = @ViewData["Environment"]</h5>
