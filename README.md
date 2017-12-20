@@ -6,15 +6,19 @@ This Workshop demo and accompanying source code is designed to help facilitate a
 2. [PCF Exchange Demo and Workshop](https://github.com/pivotal-field-engineering/pcfechange-polyglot-demo) developed by Andrew Stakhov
 
 ### Technology
-The source code for this project utilizes the following:
-1. .NET Core v2
-2. Steeltoe v2
-3. Syncfusion UI Controls
-4. Configuration Server
-5. Eureka Discovery Server
-6. Hystrix Circuit Breakers
-5. RabbitMQ Messaging
-6. Redis Caching
+This application is intended to be deployed using Pivotal Application Services on Cloud Foundry. The source code for this project is implemented using dependency injection in .NET Core v2 and the following technologies:
+
+1. Steeltoe v2 Open Source Libraries
+2. Syncfusion UI Controls
+3. Configuration Server
+4. Eureka Discovery Server
+5. Hystrix Circuit Breakers
+6. RabbitMQ Messaging
+7. Redis Caching
+8. Pivotal UAC/SSO
+9. MySQL Connector
+10. Microsoft SQL Server
+11. User Provided Services
 
 ### Requirements
 

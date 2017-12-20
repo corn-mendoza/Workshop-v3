@@ -13,6 +13,7 @@ applications:
     OpsManagerUrl: https://opsmgr.islands.cloud
     ConfigServerUrl: https://spring-cloud-broker.apps.islands.cloud/dashboard/p-config-server/94210da6-7cee-4879-a97b-cd2750e1c1d4
     PCFMetricsUrl: https://metrics.sys.islands.cloud/apps/
+    ExchangeUrl: https://exchangeui-alcidine-trichinization.apps.islands.cloud/
   services:
    - myConfigServer
    - myDiscoveryService
