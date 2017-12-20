@@ -1,0 +1,10 @@
+﻿---
+applications:
+- name: exchangeui
+  random-route: true
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
+  instance: 2
+  env:
+    ASPNETCORE_ENVIRONMENT: Production
+  services:
+   - myDiscoveryService

@@ -1,25 +1,63 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Pivotal.Extensions.Configuration.ConfigServer;
+using Steeltoe.Extensions.Logging;
+using System.IO;
 using System.Threading.Tasks;
 
-namespace Tweet_Bunny_Service
+namespace TweetBunnyService
 {
     class Program
     {
-        ILogger logger;
-
         static void Main(string[] args)
         {
-            var _t = RunApplication(args);
-            _t.Wait();
+            var bld = BuildAppHost(args);
+            
+            Application app = (Application) bld.Services.GetService(typeof(Application));
+            Task.Run(() => app.Run()).Wait();
         }
 
-        static async public Task<bool> RunApplication(string[] args)
+        public static IWebHost BuildAppHost(string[] args)
         {
-            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
+            var builder = new WebHostBuilder()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    var env = hostingContext.HostingEnvironment;
 
-            Console.WriteLine("Hello World!");
-            return true;
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+                    config.AddConfigServer(env);
+
+                    config.AddEnvironmentVariables();
+
+                    if (args != null)
+                    {
+                        config.AddCommandLine(args);
+                    }
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddDebug();
+                    logging.AddDynamicConsole(hostingContext.Configuration);
+                })
+                .UseDefaultServiceProvider((context, options) =>
+                {
+                    options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
+                })
+                .UseKestrel()
+                .UseStartup<Startup>();
+
+            if (args != null)
+            {
+                builder.UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build());
+            }
+
+            return builder.Build();
         }
+
     }
 }
