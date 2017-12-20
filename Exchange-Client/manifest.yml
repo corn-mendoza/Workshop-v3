@@ -3,7 +3,9 @@ applications:
 - name: exchangeui
   random-route: true
   buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
-  instance: 2
+  instance: 1
+  memory: 512M
+  disk: 512M
   env:
     ASPNETCORE_ENVIRONMENT: Production
   services:
