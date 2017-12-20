@@ -75,6 +75,19 @@ This project is developed using Visual Studio 2017. To build this solution, clon
 #### Environment Variables
 Environment variables are used to configure the Workshop UI. The initial set of variables can be set in the manifest file of the project prior to pushing the Workshop UI application.
 
+- ASPNETCORE_ENVIRONMENT: Environment to load using Config Server
+- AppsManagerUrl: URI for Apps Manager Portal
+- AppBaseUrl: Base URI for Apps Manager Applications
+- EurekaDashboardUrl: Eureka Dashboard URI
+- HystrixDashboardUrl: Hystrix Dashboard URI
+- OpsManagerUrl: Ops Manager Portal URI
+- ConfigServerUrl: Config Server URI
+- ConfigRepoUrl: Config Server Repo Location URI
+- PCFMetricsUrl: PCF Metrics URI
+- ExchangeUrl: PCF Exchange Demo URI
+- GithubRepoUrl: Workshop Source Repo URI
+
+##### Sample Entries
     ASPNETCORE_ENVIRONMENT: Production
     AppsManagerUrl: https://apps.sys.islands.cloud
     AppBaseUrl: https://apps.sys.islands.cloud/organizations/21c9ef98-0008-4f6c-a9a8-e7183869992d/spaces/c6781755-3f7f-411f-9f80-8bcd5dc6c04e/applications/
@@ -82,6 +95,7 @@ Environment variables are used to configure the Workshop UI. The initial set of 
     HystrixDashboardUrl: https://hystrix-9e3d8c20-ccea-4484-90c3-b1fb316b5682.apps.islands.cloud/hystrix/monitor?stream=https%3A%2F%2Fturbine-9e3d8c20-ccea-4484-90c3-b1fb316b5682.apps.islands.cloud%2Fturbine.stream
     OpsManagerUrl: https://opsmgr.islands.cloud
     ConfigServerUrl: https://spring-cloud-broker.apps.islands.cloud/dashboard/p-config-server/94210da6-7cee-4879-a97b-cd2750e1c1d4
+	ConfigRepoUrl: https://github.com/corn-pivotal/config-repo
     PCFMetricsUrl: https://metrics.sys.islands.cloud/apps/
     ExchangeUrl: https://exchangeui-alcidine-trichinization.apps.islands.cloud/
     GithubRepoUrl: https://github.com/corn-pivotal/Workshop-v3/
