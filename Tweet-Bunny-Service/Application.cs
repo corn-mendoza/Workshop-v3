@@ -1,11 +1,14 @@
 ﻿using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
 using Pivotal.Helper;
+using RabbitMQ.Client;
 using RestSharp;
+using Steeltoe.CloudFoundry.Connector.Rabbit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,9 +30,13 @@ namespace TweetBunnyService
         private StorageCredentials Credentials;
         ILogger<Application> _logger;
         IConfiguration Config { get; set; }
-
-        public Application(ILogger<Application> logger, IConfiguration configApp)
+        IOptionsSnapshot<RabbitProviderConfigurer> RabbitOptions { get; set; }
+        IServiceProvider RabbitConnection { get; set; }
+        // RabbitConnection { get; set; }
+        public Application(ILogger<Application> logger, IConfiguration configApp, IServiceProvider serviceProvider)
         {
+            RabbitConnection = serviceProvider;
+            
             Config = configApp;
             _logger = logger;
         }
@@ -38,22 +45,22 @@ namespace TweetBunnyService
         {
             try
             {
-                _logger?.LogInformation($"This is a console application for {Config.GetValue<string>("Name")}");
+                _logger?.LogInformation($"Starting Tweet Bunny Service");
 
                 // Use the CFHelper class to load the VCAP Services and Applications from Cloud Foundry
                 CFEnvironmentVariables env = new CFEnvironmentVariables();
-                var _azureConnect = env.getConnectionStringForMessagingService("azure-servicebus");
+                //var _azureConnect = env.getConnectionStringForMessagingService("azure-servicebus");
 
-                if (!string.IsNullOrEmpty(_azureConnect))
-                {
-                    ServiceBusConnectionString = _azureConnect;
-                }
-                else
-                {
-                    ServiceBusConnectionString = Config.GetSection("ServiceBusConnectionString").Value;
-                }
+                //if (!string.IsNullOrEmpty(_azureConnect))
+                //{
+                //    ServiceBusConnectionString = _azureConnect;
+                //}
+                //else
+                //{
+                //    ServiceBusConnectionString = Config.GetSection("ServiceBusConnectionString").Value;
+                //}
 
-                _logger?.LogInformation($"Service Bus Connection String: {ServiceBusConnectionString}");
+                //_logger?.LogInformation($"Service Bus Connection String: {ServiceBusConnectionString}");
 
                 //var _azureDbConnect = env.getConnectionStringForAzureDbService("azure-sqldb");
 
@@ -100,20 +107,20 @@ namespace TweetBunnyService
                 _logger?.LogInformation($"Max blob length set to {MaxBlobLength}");
                 _logger?.LogInformation($"File upload interval set to {FileUploadMs}");
 
-                queueClient = new QueueClient(ServiceBusConnectionString, QueueName, ReceiveMode.PeekLock);
+                //queueClient = new QueueClient(ServiceBusConnectionString, QueueName, ReceiveMode.PeekLock);
 
                 _logger?.LogInformation($"Processing started for {QueueName}");
 
                 Console.WriteLine("Press ctrl-c to stop receiving messages.");
 
-                ReceiveMessages();
+                //ReceiveMessages();
 
                 Console.Read();
 
                 _logger?.LogInformation($"Stopping queue {QueueName}");
 
                 // Close the client after the ReceiveMessages method has exited.
-                await queueClient.CloseAsync();
+                //await queueClient.CloseAsync();
             }
             catch (Exception ex)
             {

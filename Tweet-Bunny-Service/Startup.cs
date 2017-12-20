@@ -1,50 +1,45 @@
 ﻿
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
-
+using Pivotal.Helper;
+using Steeltoe.CloudFoundry.Connector.Rabbit;
 // Lab07 Start
-using Pivotal.Discovery.Client;
 // Lab07 End
 
 // Lab08 Start
 using Steeltoe.CloudFoundry.Connector.Redis;
-using Steeltoe.Security.DataProtection;
-// Lab08 End
-
-// Lab10 Start
-using Steeltoe.Security.Authentication.CloudFoundry;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 // Lab10 End
 
 // Lab09 Start
-using Steeltoe.CircuitBreaker.Hystrix;
 // Lab09 End
 
 // Lab11 Start
 using Steeltoe.Management.CloudFoundry;
-using Steeltoe.Extensions.Configuration.CloudFoundry;
+// Lab08 End
+
+// Lab10 Start
+using Steeltoe.Security.Authentication.CloudFoundry;
+using Steeltoe.Security.DataProtection;
 using System;
-using Pivotal.Extensions.Configuration.ConfigServer;
-using System.Linq;
-using Pivotal.Helper;
-using Steeltoe.Management.Endpoint.Health;
 // Lab11 End
 
 namespace TweetBunnyService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(Microsoft.Extensions.Configuration.IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
             Environment = env;
         }
 
-        public IConfiguration Configuration { get; }
+        public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; }
         public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -72,8 +67,6 @@ namespace TweetBunnyService
             //// Lab05 End
 
             // Add for Service Options
-            //services.Configure<CloudFoundryServicesOptions>(Configuration);
-            //services.Configure<CloudFoundryApplicationOptions>(Configuration);
             services.ConfigureCloudFoundryOptions(Configuration);
             //
 
@@ -121,6 +114,7 @@ namespace TweetBunnyService
             //services.AddHystrixMetricsStream(Configuration);
             //// Lab09 End
 
+            services.AddRabbitConnection(Configuration);
             services.AddSession();
 
             //services.AddSingleton<IHealthContributor, SqlServerHealthContributor>();
@@ -162,15 +156,15 @@ namespace TweetBunnyService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Workshop/Error");
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //    app.UseBrowserLink();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Workshop/Error");
+            //}
 
             //app.UseStaticFiles();
 
