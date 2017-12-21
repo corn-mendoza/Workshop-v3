@@ -54,7 +54,7 @@ The Platform section provides a demonstration of the platform's capabilities and
 The Configuration section provides a demonstration of configuration best practices and using steeltoe configuration services. Links to environment variables, the config server dashboard, the config server repository, and build information are included on the page to assist in navigation to key functionality.
 
 ### Services
-The Services section provides a demonstration of service discovery and circuit breaker patterns. Redis is used to store the service counters. Service security is demonstrated through the SSO feature of the portal. If the user is not logged in, the service will respond with "You will have a nice day" 
+The Services section provides a demonstration of service discovery and circuit breaker patterns. Redis is used to store the service counters. Service security is demonstrated through the SSO feature of the portal. If the user is not logged in, the service will respond with "You will have a nice day". 
 Links to the Hystrix and Eureka dashboards are included on the page to assist in navigation to key functionality.
 
 ### Connections
