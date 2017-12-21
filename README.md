@@ -5,7 +5,7 @@ This Workshop demo and accompanying source code is designed to help facilitate a
 1. [Steeltoe Workshop](https://github.com/SteeltoeOSS/Workshop) developed by Dave Tillman
 2. [PCF Exchange Demo and Workshop](https://github.com/pivotal-field-engineering/pcfechange-polyglot-demo) developed by Andrew Stakhov
 
-A live demonstration can be found [here](https://workshopui-psoriatic-obstructionism.apps.islands.cloud/).
+A live demonstration can be found [here](https://workshopui-psoriatic-obstructionism.apps.islands.cloud/).  This project is still in development and will be updated regularly.
 
 ### Technology
 This application is intended to be deployed using Pivotal Application Services on Cloud Foundry. The source code for this project is implemented using dependency injection in .NET Core v2 and the following technologies:
@@ -54,7 +54,7 @@ The Platform section provides a demonstration of the platform's capabilities and
 The Configuration section provides a demonstration of configuration best practices and using steeltoe configuration services. Links to environment variables, the config server dashboard, the config server repository, and build information are included on the page to assist in navigation to key functionality.
 
 ### Services
-The Services section provides a demonstration of service discovery and circuit breaker patterns. Redis is used to store the service counters. Service security is demonstrated through the SSO feature of the portal. If the user is not logged in, the service will respond with "You will have a nice day". 
+The Services section provides a demonstration of service discovery and circuit breaker patterns. Redis is used to store the service counters. Service security is demonstrated through the SSO feature of the portal. If the user is not logged in, the service will respond with "You will have a happy day!". 
 Links to the Hystrix and Eureka dashboards are included on the page to assist in navigation to key functionality.
 
 ### Connections
