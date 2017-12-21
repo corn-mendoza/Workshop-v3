@@ -21,7 +21,6 @@ namespace TweetBunnyService
     {
         private IQueueClient queueClient;
         private string ServiceBusConnectionString = "{Service Bus connection string}";
-        private string SqlConnectionString = "{SQL connection string}";
         private string StorageEndpoint = "{Blob connection string}";
         private string QueueName = "{Queue path/name}";
         private int MaxBlobLength = 1000000;

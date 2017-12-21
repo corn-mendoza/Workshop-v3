@@ -125,32 +125,33 @@ namespace TweetBunnyService
 
             // Use the Bound Service for connection string if it is found in a User Provided Service
             string sourceString = "appsettings.json";
-            string dbString = Configuration.GetConnectionString("AttendeeContext");
+            string dbString = Configuration.GetConnectionString("SqlConnectionString");
             IConfigurationSection configurationSection = Configuration.GetSection("ConnectionStrings");
             if (configurationSection != null)
             {
-                if (configurationSection.GetValue<string>("AttendeeContext") != null)
+                if (configurationSection.GetValue<string>("SqlConnectionString") != null)
                 {
-                    dbString = configurationSection.GetValue<string>("AttendeeContext");
+                    dbString = configurationSection.GetValue<string>("SqlConnectionString");
                     sourceString = "Config Server";
                 }
             }
             else
             {
                 var cfe = new CFEnvironmentVariables();
-                var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext");
+                var _connect = cfe.getConnectionStringForDbService("user-provided", "SqlConnectionString");
                 if (!string.IsNullOrEmpty(_connect))
                 {
                     sourceString = "User Provided Service";
                 }
             }
 
-            services.AddSingleton<Application>();
+            //services.AddDbContext<AttendeeContext>(options =>
+            //        options.UseSqlServer(dbString));
 
             Console.WriteLine($"Using connection string from the {sourceString}");
 
-            //services.AddDbContext<AttendeeContext>(options =>
-            //        options.UseSqlServer(dbString));
+            services.AddTransient<Application>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
