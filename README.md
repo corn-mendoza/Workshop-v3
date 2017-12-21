@@ -30,7 +30,7 @@ The following are required for building and deploying the applications in this w
 - [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Optional, needed to run Eureka and Config servers locally
 
 ## Design
-While the workshop applications help demonstrate the functionality of Pivotal Application Services and Spring Cloud Services using Steeltoe, there is a need to expose some of the underlying workings of these applications. This workshop and demo will help 
+While the Steeltoe workshop application helps demonstrate the functionality of Pivotal Application Services and Spring Cloud Services using Steeltoe, there was a need to expose some of the underlying workings of these applications running on PAS. This workshop and demo will help 
 users better understand how PAS can help developers deploy at scale. Some additional techniques are used in the development of these applications such as utilizing service client libraries and shared model libraries. 
 
 The following are some of the patterns used in development:
@@ -75,6 +75,9 @@ The following are some of the patterns used in development:
 
 
 ## Installation Instructions
+### Deploying through the VSTS Pipeline
+This demo source code repository has been integrated into a CI/CD pipeline using Visual Studio Team Services. The build and release jobs developed leverage the Cloud Foundry plug-in to deploy the application on to Pivotal Cloud Foundry. 
+The portal for the VSTS CI/CD pipeline can be found [here](https://pivotal-workshops.visualstudio.com/Workshop/). Access is required to the portal to view the job definitions.
 
 ### Installation Packages without Visual Studio
 Installation packages that are ready to push are available in the Release section of this repository.  You can find them [here](https://github.com/corn-pivotal/Workshop-v3/releases).
