@@ -21,8 +21,24 @@ This application is intended to be deployed using Pivotal Application Services o
 11. User Provided Services
 
 ### Requirements
+The following are required for building and deploying the applications in this workshop.
 
-## Patterns
+- [Cloud Foundry CLI](https://github.com/cloudfoundry/cli)
+- [Git Client](https://git-scm.com/downloads)
+- [.NET Core SDK 2.0](https://www.microsoft.com/net/download)
+- [Visual Studio Code](https://code.visualstudio.com/) or [Visual Studio 2017](https://www.visualstudio.com/downloads/)
+- [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Optional, needed to run Eureka and Config servers locally
+
+## Design
+While the workshop applications help demonstrate the functionality of Pivotal Application Services and Spring Cloud Services using Steeltoe, there is a need to expose some of the underlying workings of these applications. This workshop and demo will help 
+users better understand how PAS can help developers deploy at scale. Some additional techniques are used in the development of these applications such as utilizing service client libraries and shared model libraries. 
+
+The following are some of the patterns used in development:
+
+- Micro services using service client shared libraries
+- Configuration Services to handle application configuration
+- User Provided Services and Configurtion Services to handle service connections
+- User and Service Security using OAuth and JWT methods
 
 ## Features
 
@@ -103,5 +119,14 @@ Environment variables are used to configure the Workshop UI. The initial set of 
 #### Config Server
 
 #### Services
+
+##### Sample Entries
+   - myConfigServer
+   - myDiscoveryService
+   - myRedisService
+   - myHystrixService
+   - myOAuthService
+   - myRabbitMQService
+   - AttendeeContext
 
 #### Connection Strings
