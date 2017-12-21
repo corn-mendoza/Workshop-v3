@@ -5,6 +5,8 @@ This Workshop demo and accompanying source code is designed to help facilitate a
 1. [Steeltoe Workshop](https://github.com/SteeltoeOSS/Workshop) developed by Dave Tillman
 2. [PCF Exchange Demo and Workshop](https://github.com/pivotal-field-engineering/pcfechange-polyglot-demo) developed by Andrew Stakhov
 
+A live demonstration can be found [here](https://workshopui-psoriatic-obstructionism.apps.islands.cloud/).
+
 ### Technology
 This application is intended to be deployed using Pivotal Application Services on Cloud Foundry. The source code for this project is implemented using dependency injection in .NET Core v2 and the following technologies:
 
@@ -46,18 +48,26 @@ The following are some of the patterns used in development:
 The workshop application can be navigated through the home page links through the various topics. The workshop can also be used as a demo for the capabilities of PAS. The following areas are designed to support the navigation of many of the features of PAS, SCS, and Steeltoe.
 
 ### Platform
+The Platform section provides a demonstration of the platform's capabilities and enhancements provided by Steeltoe. Links to logging, tasks, metrics, and health accutators are included on the page to assist in navigation to key functionality.
 
 ### Configuration
+The Configuration section provides a demonstration of configuration best practices and using steeltoe configuration services. Links to environment variables, the config server dashboard, the config server repository, and build information are included on the page to assist in navigation to key functionality.
 
 ### Services
+The Services section provides a demonstration of service discovery and circuit breaker patterns. Redis is used to store the service counters. Service security is demonstrated through the SSO feature of the portal. If the user is not logged in, the service will respond with "You will have a nice day" 
+Links to the Hystrix and Eureka dashboards are included on the page to assist in navigation to key functionality.
 
 ### Connections
+The Connections section provides a demonstration of how to leverage user provided services and/or the config server to manage connection string data for services. This can be demonstrated by binding and unbinding the user provided service and by changing the environment for the config server.
 
 ### Zero Downtime
+The Zero Downtime section provides a demonstration of a Blue/Green deployment. The code leverages Redis cache and config server to coordinate the cutover between applications by consitently showing the usage counters increment. The page will use colors to highlight the two applications participating on the mapped route.
 
 ### Security
+The application provides the ability to log in and log out of the application using Single Sign-On. If a user is already logged into the Apps Manager, the user will be automatically signed into the Workshop application.
 
 ### CI/CD Pipeline using VSTS
+The entire project is setup to demonstrate continuous delivery via CI/CD pipelines setup in Visual Studio Team Services. When a change is checked in by a developer, the pipeline will build the application, deploy the artifacts back into the github repository, and push the applications on to PAS.
 
 ## Projects
 The following are the projects found in this repository and a short description of the functionality that each is designed to demonstrate.
@@ -113,7 +123,7 @@ The workshop application utilizes the internal UAC of PCF for user authorization
 
 `$ uaac member add read.fortunes {userid}`
 
-* - required
+*required
 
 #### Step 1: Setting up UAAC
 To complete the setup of security for the application, the cf-uaac program needs to be used. For Windows users, this can present a challenge as the utility runs on Linux. Windows 10 users can install the bash shell to complete the configuration.
@@ -121,20 +131,31 @@ To complete the setup of security for the application, the cf-uaac program needs
 Installing cf-uaac using Ruby and Gem:
 
 `$ sudo apt install build-essential`
+
 `$ sudo apt install ruby-dev`
+
 `$ sudo apt install ruby`
+
 `$ gem install cf-uaac`
+
 
 #### Step 2: Configuring Application Security
 To complete security configuration, use the cf-uaac command in the Linux shell to execute the following:
 
 `$ uaac target uaa.sys.yourdomain.com --skip-ssl-validation`
+
 `$ uaac token client get admin -s {admin password}`
+
 `$ uaac add group read.fortunes`
+
 `$ uaac user add fortuneadmin -p {password} --emails {email address}`
+
 `$ uaac member add read.fortunes fortuneadmin`
+
 `$ uaac client add myWorkshop --authorized_grant_types authorization_code,refresh_token --authorities uaa.resource --redirect_uri http://workshopui-*-*.apps.yourdomain.com/signin-cloudfoundry --autoapprove cloud_controller.read,cloud_controller_service_permissions.read,openid,read.fortunes,read.exchange,read.database,write.database --secret mySecret`
+
 `$ uaac client update myWorkshop --scope read.fortunes,read.exchange,read.database,write.database,openid,cloud_controller.read,cloud_controller_service_permissions.read`
+
 
 ### Configuration
 
@@ -171,26 +192,42 @@ To setup the services, use the batch command file in the [scripts folder](https:
 
 ##### Sample Entries
 - myConfigServer
+
 `> cf create-service p-config-server standard myConfigServer -c config-server.json`
+
 - myDiscoveryService
+
 `> cf create-service p-service-registry standard myDiscoveryService`
+
 - myMySqlService
+
 `> cf create-service p-mysql 100mb myMySqlService`
+
 - myRedisService
+
 `> cf create-service p-redis shared-vm myRedisService`
+
 - myHystrixService
+
 `> cf create-service p-circuit-breaker-dashboard standard myHystrixService`
+
 - myRabbitMQService
+
 `> cf create-service p-rabbitmq standard myRabbitMQService`
+
 - myOAuthService
+
 `> cf cups myOAuthService -p "{\"client_id\": \"myWorkshop\",\"client_secret\": \"mySecret\",\"uri\": \"uaa://login.system.testcloud.com\"}"`
+
 - AttendeeContext
+
 `> cf cups AttendeeContext -p "{\"connectionstring": \"{AttendeeContextConnectionString}\"}"`
 
 #### Config Server
 To complete the configuration, update the location of the Config Server repository using the cf CLI.
 
 `> cf update-service myConfigServer -c {pathto/config.json}`
+
 
 #### Connection Strings
 The workshop application demonstrates the ability to load connection string information from both a user provided service and from the config server. In order for the application to function correctly for this demonstration, a SQL Server database 
