@@ -274,10 +274,13 @@ namespace Workshop_UI.Controllers
                 }
             }
 
-            ViewData["jsonDBString"] = StringCleaner.GetDisplayString("Password=", ";", Config.GetConnectionString("AttendeeContext"),"*****");
+            var _connectJson = Config.GetConnectionString("AttendeeContext");
+            if (!string.IsNullOrEmpty(_connectJson))
+                ViewData["jsonDBString"] = StringCleaner.GetDisplayString("Password=", ";", _connectJson ,"*****");
             var cfe = new CFEnvironmentVariables();
             var _connect = cfe.getConnectionStringForDbService("user-provided", "AttendeeContext");
-            ViewData["boundDBString"] = StringCleaner.GetDisplayString("Password=", ";", _connect, "*****");
+            if (!string.IsNullOrEmpty(_connect))
+                ViewData["boundDBString"] = StringCleaner.GetDisplayString("Password=", ";", _connect, "*****");
 
             //if (Services.Value != null)
             //{
