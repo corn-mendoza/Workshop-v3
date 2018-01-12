@@ -58,7 +58,7 @@ namespace Fortune_Teller_Service.Controllers
         // GET api/fortunes/random
         [HttpGet("random")]
         // Lab10 Start
-        [Authorize(Policy = "read.fortunes")]
+        //[Authorize(Policy = "read.fortunes")]
         // Lab10 End
         public async Task<Fortune> RandomFortuneAsync()
         {
