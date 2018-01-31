@@ -16,12 +16,15 @@ using Steeltoe.Extensions.Configuration.CloudFoundry;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Workshop_UI.Models;
 using Workshop_UI.ViewModels.Workshop;
 
 namespace Workshop_UI.Controllers
 {
     public class WorkshopController : Controller
     {
+        private IOptionsSnapshot<ConfigServerData> IConfigServerData { get; set; }
+
         ILogger<WorkshopController> _logger;
         public CloudFoundryServicesOptions CloudFoundryServices { get; set; }
         public CloudFoundryApplicationOptions CloudFoundryApplication { get; set; }
@@ -29,24 +32,29 @@ namespace Workshop_UI.Controllers
         IDiscoveryClient discoveryClient;
         IDistributedCache RedisCacheStore { get; set; }
         IConfiguration Config { get; set; }
+        IConfigurationRoot ConfigRoot { get; set; }
 
         SortedList<int, int> appInstCount = new SortedList<int, int>();
         SortedList<int, int> srvInstCount = new SortedList<int, int>();
         List<string> fortunes = new List<string>();
 
-        // Lab09 Start
         private FortuneServiceCommand _fortunes;
         public WorkshopController(
             ILogger<WorkshopController> logger,
             IOptionsSnapshot<FortuneServiceOptions> config,
+            IOptionsSnapshot<ConfigServerData> configServerData,
             FortuneServiceCommand fortunes,
             IOptions<CloudFoundryApplicationOptions> appOptions,
             IOptions<CloudFoundryServicesOptions> servOptions,
             IConfiguration configApp,
+            IConfigurationRoot configRoot,
             IDistributedCache cache,
             [FromServices] IDiscoveryClient client
             )
         {
+            if (configServerData != null)
+                IConfigServerData = configServerData;
+
             _logger = logger;
             _fortunes = fortunes;
             CloudFoundryServices = servOptions.Value;
@@ -55,13 +63,20 @@ namespace Workshop_UI.Controllers
             discoveryClient = client;
             RedisCacheStore = cache;
             Config = configApp;
+            ConfigRoot = configRoot;
         }
-        // Lab09 End
         
         public IActionResult Index()
         {
             _logger?.LogDebug("Index");
-            return View();
+            return View(new CloudFoundryViewModel(
+                CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
+                CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+                IConfigServerData.Value,
+                discoveryClient,
+                appInstCount,
+                srvInstCount,
+                fortunes));
         }
 
         public IActionResult Steeltoe()
@@ -155,6 +170,7 @@ namespace Workshop_UI.Controllers
             return View(new CloudFoundryViewModel(
                 CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
                 CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+                IConfigServerData.Value,
                 discoveryClient,
                 appInstCount,
                 srvInstCount,
@@ -185,6 +201,7 @@ namespace Workshop_UI.Controllers
             return View(new CloudFoundryViewModel(
                 CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
                 CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+                IConfigServerData.Value,
                 discoveryClient,
                 appInstCount,
                 srvInstCount,
@@ -217,6 +234,7 @@ namespace Workshop_UI.Controllers
             return View(new CloudFoundryViewModel(
                 CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
                 CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+                IConfigServerData.Value,
                 discoveryClient,
                 appInstCount,
                 srvInstCount,
@@ -322,7 +340,14 @@ namespace Workshop_UI.Controllers
                 ViewData["Username"] = "Not Available";
                 ViewData["ValidateCertificates"] = "Not Available";
             }
-            return View();
+            return View(new CloudFoundryViewModel(
+                CloudFoundryApplication == null ? new CloudFoundryApplicationOptions() : CloudFoundryApplication,
+                CloudFoundryServices == null ? new CloudFoundryServicesOptions() : CloudFoundryServices,
+                IConfigServerData.Value,
+                discoveryClient,
+                appInstCount,
+                srvInstCount,
+                fortunes));
         }
         [HttpGet]
         // Lab10 Start
@@ -340,6 +365,11 @@ namespace Workshop_UI.Controllers
             return RedirectToAction(nameof(WorkshopController.Platform), "Workshop"); 
         }
 
+        public IActionResult ReloadConfig()
+        {
+            ConfigRoot.Reload();
+            return RedirectToAction(nameof(WorkshopController.Configuration), "Workshop");
+        }
 
         public IActionResult Manage()
         {

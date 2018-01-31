@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CloudFoundryViewModel
+@{
     ViewData["Title"] = "Configuration";
 }
 <div class="panel-heading">
@@ -20,13 +21,13 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+ @ViewData["appId"])/settings" target="_blank"><b>Environment Variables</b></a>
-        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("ManifestUrl"))" target="_blank"><b>Manifest File</b></a>
-        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("GithubRepoUrl"))/tree/master/Workshop-UI/appsettings.json" target="_blank"><b>appsettings.json</b></a>
-        <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigServerUrl")" target="_blank"><b>Config Server</b></a>
-        <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("ConfigRepoUrl")" target="_blank"><b>Config Repo</b></a>
-        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("AppBaseUrl")+ @ViewData["appId"])/settings" target="_blank"><b>Build Info</b></a>
-        <a class="btn btn-default" href="@(Environment.GetEnvironmentVariable("GithubRepoUrl"))/blob/master/Workshop-UI/git.properties" target="_blank"><b>Git Properties</b></a>
+        <a class="btn btn-default" href="@(Model.ConfigData.AppBaseUrl)+ @ViewData["appId"])/settings" target="_blank"><b>Environment Variables</b></a>
+        <a class="btn btn-default" href="@(Model.ConfigData.ManifestUrl)" target="_blank"><b>Manifest File</b></a>
+        <a class="btn btn-default" href="@(Model.ConfigData.GithubRepoUrl)/tree/master/Workshop-UI/appsettings.json" target="_blank"><b>appsettings.json</b></a>
+        <a class="btn btn-default" href="@Model.ConfigData.ConfigServerUrl" target="_blank"><b>Config Server</b></a>
+        <a class="btn btn-default" href="@Model.ConfigData.ConfigRepoUrl" target="_blank"><b>Config Repo</b></a>
+        <a class="btn btn-default" href="@(Model.ConfigData.AppBaseUrl)+ @ViewData["appId"])/settings" target="_blank"><b>Build Info</b></a>
+        <a class="btn btn-default" href="@(Model.ConfigData.GithubRepoUrl)/blob/master/Workshop-UI/git.properties" target="_blank"><b>Git Properties</b></a>
     </div>
 </div>
 <div class="row">
@@ -40,11 +41,11 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <h4><b>Config Server Settings</b></h4>
+        <h4><b>Config Server Settings</b></h4>            
         @*<h4><a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="Reload">Reload</a></h4>*@
         <h5>spring:cloud:config:uri = @ViewData["Uri"]</h5>
         <h5>spring:cloud:config:enabled = @ViewData["Enabled"]</h5>
-        <h5>spring:cloud:config:env = @ViewData["Environment"]</h5>
+        <h5>spring:cloud:config:env = @ViewData["Environment"]     <b>&laquo;--<i>Environment name that has been loaded</i></b></h5>
         <h5>spring:cloud:config:failFast = @ViewData["FailFast"]</h5>
         <h5>spring:cloud:config:name = @ViewData["Name"]     <b>&laquo;--<i>Change this value to the same application name</i></b></h5>
         <h5>spring:cloud:config:label = @ViewData["Label"]</h5>
@@ -54,6 +55,23 @@
         <h5>spring:cloud:config:client_id = @ViewData["ClientId"]</h5>
         <h5>spring:cloud:config:client_secret = @ViewData["ClientSecret"]</h5>
         <h5>spring:cloud:config:validate_certificates = @ViewData["ValidateCertificates"]</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h4><b>Config Server Data</b></h4>
+        <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="ReloadConfig">Reload</a>
+        <h5>AppBaseUrl = @Model.ConfigData.AppBaseUrl</h5>
+        <h5>AppsManagerUrl = @Model.ConfigData.AppsManagerUrl</h5>
+        <h5>ConfigRepoUrl = @Model.ConfigData.ConfigRepoUrl</h5>
+        <h5>ConfigServerUrl = @Model.ConfigData.ConfigServerUrl</h5>
+        <h5>EurekaDashboardUrl = @Model.ConfigData.EurekaDashboardUrl</h5>
+        <h5>ExchangeUrl = @Model.ConfigData.ExchangeUrl</h5>
+        <h5>GithubRepoUrl = @Model.ConfigData.GithubRepoUrl</h5>
+        <h5>HystrixDashboardUrl = @Model.ConfigData.HystrixDashboardUrl</h5>
+        <h5>ManifestUrl = @Model.ConfigData.ManifestUrl</h5>
+        <h5>OpsManagerUrl = @Model.ConfigData.OpsManagerUrl</h5>
+        <h5>PCFMetricsUrl = @Model.ConfigData.PCFMetricsUrl</h5>
     </div>
 </div>
 <div class="row">

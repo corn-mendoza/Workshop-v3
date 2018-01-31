@@ -35,8 +35,8 @@
             <a class="btn btn-default" asp-area="" asp-controller="Workshop" asp-action="CreateLoad">Create Load</a>
         </div>
         <div class="panel-group">
-            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("HystrixDashboardUrl")" target="_blank">Hystrix Dashboard &raquo;</a>
-            <a class="btn btn-default" href="@Environment.GetEnvironmentVariable("EurekaDashboardUrl")" target="_blank">Eureka Dashboard &raquo;</a>
+            <a class="btn btn-default" href="@Model.ConfigData.HystrixDashboardUrl" target="_blank">Hystrix Dashboard &raquo;</a>
+            <a class="btn btn-default" href="@Model.ConfigData.EurekaDashboardUrl" target="_blank">Eureka Dashboard &raquo;</a>
         </div>
         </div>
         <div class="col-md-3">

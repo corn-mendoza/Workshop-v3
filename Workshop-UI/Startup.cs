@@ -76,6 +76,10 @@ namespace Workshop_UI
             services.Configure<FortuneServiceOptions>(Configuration.GetSection("fortuneService"));
             // Lab05 End
 
+            // Workshop Configuration
+            services.Configure<ConfigServerData>(Configuration.GetSection("workshopConfig"));
+            services.AddConfiguration(Configuration);
+
             // Add for Service Options
             //services.Configure<CloudFoundryServicesOptions>(Configuration);
             //services.Configure<CloudFoundryApplicationOptions>(Configuration);
