@@ -12,7 +12,7 @@ applications:
     OpsManagerUrl: https://opsmgr.haas-128.pez.pivotal.io
     ConfigServerUrl: https://spring-cloud-broker.cfapps.haas-128.pez.pivotal.io/dashboard/p-config-server/415e12d6-d6da-4fc5-ac3c-cdd673074a2c
     ConfigRepoUrl: https://github.com/corn-pivotal/configserver-repo
-    PCFMetricsUrl: https://metrics.run.haas-128.pez.pivotal.io/apps/
+    PCFMetricsUrl: https://metrics.run.haas-128.pez.pivotal.io/apps/b78e06b7-e0f4-4301-ad68-f8a4ee1ba51b/dashboard
     ExchangeUrl: https://exchangeui.apps.run.haas-128.pez.pivotal.io/
     GithubRepoUrl: https://github.com/corn-pivotal/Workshop-v3
     ManifestUrl: https://github.com/corn-pivotal/Workshop-v3/blob/master/Workshop-UI/manifest.yml
