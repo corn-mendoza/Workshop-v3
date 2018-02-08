@@ -1,14 +1,15 @@
-#Installing the Workshop Application
+# Installing the Workshop Application
 
-##Requirements
-###Platform
+## Requirements
+
+### Platform
 The workshop is built and tested using PCF 1.12 or PCF 2.0. Other versions can work but will need to be tested prior to delivery. The workshop has been tested on the following cloud platforms:
 
 - Azure
 - vSphere
 - Google Cloud
 
-###Services
+### Services
 The following services are required to be installed on the foundation for all of the features of the workshop application to function correctly.
 - Spring Cloud Services (v 1.4)
 - RabbitMQ (v 1.10)
