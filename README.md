@@ -5,7 +5,7 @@ This Workshop demo and accompanying source code is designed to help facilitate a
 1. [Steeltoe Workshop](https://github.com/SteeltoeOSS/Workshop) developed by Dave Tillman
 2. [PCF Exchange Demo and Workshop](https://github.com/pivotal-field-engineering/pcfechange-polyglot-demo) developed by Andrew Stakhov
 
-A live demonstration can be found [here](https://workshopui.apps.islands.cloud/).  This project is still in development and will be updated regularly.
+A live demonstration can be found [here](https://exchangeui.apps.islands.cloud/).  This project is still in development and will be updated regularly.
 
 ### Technology
 This application is intended to be deployed using Pivotal Application Services on Cloud Foundry. The source code for this project is implemented using dependency injection in .NET Core v2 and the following technologies:
@@ -43,28 +43,7 @@ The following are some of the patterns used in development:
 - User and Service Security using OAuth and JWT methods
 - Application support for Blue Green Deployments
 - Continuous integration and deployment using Visual Studio Team Services
-
-## Features
-The workshop application can be navigated through the home page links through the various topics. The workshop can also be used as a demo for the capabilities of PAS. The following areas are designed to support the navigation of many of the features of PAS, SCS, and Steeltoe.
-
-### Platform
-The Platform section provides a demonstration of the platform's capabilities and enhancements provided by Steeltoe. Links to logging, tasks, metrics, and health accutators are included on the page to assist in navigation to key functionality.
-
-### Configuration
-The Configuration section provides a demonstration of configuration best practices and using steeltoe configuration services. Links to environment variables, the config server dashboard, the config server repository, and build information are included on the page to assist in navigation to key functionality.
-
-### Services
-The Services section provides a demonstration of service discovery and circuit breaker patterns. Redis is used to store the service counters. Service security is demonstrated through the SSO feature of the portal. If the user is not logged in, the service will respond with "You will have a happy day!". 
-Links to the Hystrix and Eureka dashboards are included on the page to assist in navigation to key functionality.
-
-### Connections
-The Connections section provides a demonstration of how to leverage user provided services and/or the config server to manage connection string data for services. This can be demonstrated by binding and unbinding the user provided service and by changing the environment for the config server.
-
-### Zero Downtime
-The Zero Downtime section provides a demonstration of a Blue/Green deployment. The code leverages Redis cache and config server to coordinate the cutover between applications by consitently showing the usage counters increment. The page will use colors to highlight the two applications participating on the mapped route.
-
-### Security
-The application provides the ability to log in and log out of the application using Single Sign-On. If a user is already logged into the Apps Manager, the user will be automatically signed into the Workshop application.
+- Polyglot language support including Java, .NET Framework, and .NET Core applications and services
 
 ### CI/CD Pipeline using VSTS
 The entire project is setup to demonstrate continuous delivery via CI/CD pipelines setup in Visual Studio Team Services. When a change is checked in by a developer, the pipeline will build the application, deploy the artifacts back into the github repository, and push the applications on to PAS.
@@ -72,35 +51,20 @@ The entire project is setup to demonstrate continuous delivery via CI/CD pipelin
 ## Projects
 The following are the projects found in this repository and a short description of the functionality that each is designed to demonstrate.
 
-### Workshop UI
-Main demo application for the workshop
-
-### Fortune Teller Service
-Provides fortunes as a service used to demonstrate the circuit breaker and service discovery design patterns. 
+### Exchange UI
+Standalone web application for the PCF Exchange demo/workshop.
 
 ### Market Data Service
 Market data service used by the PCF Exchange demo/workshop.
 
-### Order Manager Service
+### Order Manager Service (Java and .NET Core)
 Order manager service used by the PCF Exchange demo/workshop.
 
 ### Exchange BTUSD Service
 Currency conversion service used by the PCF Exchange demo/workshop.
 
-### Exchange UI
-Standalone web application for the PCF Exchange demo/workshop.
-
-### Tweet Bunny Service
-Provides sample console application that can leverage the Steeltoe services and connectors.
-
-### Fortune Service Client
-Provides a reusable client for accessing the fortune teller service.
-
-### Order Manager Client
-Provides a reusable client for accessing the order manager service.
-
-### Pivotal Utilities
-Common set of functions used by several applications.
+### Exchange Legacy Service
+.NET Framework version of the Exchange BTUSD Service used by the PCF Exchange demo/workshop.
 
 ## Installation Instructions
 ### Deploying through the VSTS Pipeline
