@@ -11,15 +11,13 @@ A live demonstration can be found [here](https://exchangeui.apps.islands.cloud/)
 This application is intended to be deployed using Pivotal Application Services on Cloud Foundry. The source code for this project is implemented using dependency injection in .NET Core v2 and the following technologies:
 
 1. Steeltoe v2 Open Source Libraries
-2. Syncfusion UI Controls
-3. Configuration Server
-4. Eureka Discovery Server
-5. Hystrix Circuit Breakers
-6. RabbitMQ Messaging
-7. Redis Caching
-8. Pivotal UAC/SSO
-9. MySQL Connector
-10. Microsoft SQL Server
+2. Configuration Server
+3. Eureka Discovery Server
+4. Hystrix Circuit Breakers
+5. RabbitMQ Messaging
+6. Redis Caching
+7. Pivotal UAC/SSO
+8. MySQL Connector
 11. User Provided Services
 
 ### Requirements
@@ -32,7 +30,7 @@ The following are required for building and deploying the applications in this w
 - [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Optional, needed to run Eureka and Config servers locally
 
 ## Design
-While the Steeltoe workshop application helps demonstrate the functionality of Pivotal Application Services and Spring Cloud Services using Steeltoe, there was a need to expose some of the underlying workings of these applications running on PAS. This workshop and demo will help 
+While the workshop application helps demonstrate the functionality of Pivotal Application Services and Spring Cloud Services using Steeltoe, there was a need to expose some of the underlying workings of these applications running on PAS. This workshop and demo will help 
 users better understand how PAS can help developers deploy at scale. Some additional techniques are used in the development of these applications such as utilizing service client libraries and shared model libraries. 
 
 The following are some of the patterns used in development:
