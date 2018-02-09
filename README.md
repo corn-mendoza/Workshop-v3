@@ -5,7 +5,7 @@ This Workshop demo and accompanying source code is designed to help facilitate a
 1. [Steeltoe Workshop](https://github.com/SteeltoeOSS/Workshop) developed by Dave Tillman
 2. [PCF Exchange Demo and Workshop](https://github.com/pivotal-field-engineering/pcfechange-polyglot-demo) developed by Andrew Stakhov
 
-A live demonstration can be found [here](https://workshopui-psoriatic-obstructionism.apps.islands.cloud/).  This project is still in development and will be updated regularly.
+A live demonstration can be found [here](https://workshopui.apps.islands.cloud/).  This project is still in development and will be updated regularly.
 
 ### Technology
 This application is intended to be deployed using Pivotal Application Services on Cloud Foundry. The source code for this project is implemented using dependency injection in .NET Core v2 and the following technologies:
@@ -113,6 +113,8 @@ Installation packages that are ready to push are available in the Release sectio
 ### Cloning and Building the Solution
 This project is developed using Visual Studio 2017. To build this solution, clone this repo and open the solution file. The projects can then be published and pushed from the publish folder. 
 
+### Configuration
+Additional configuration instructions can be found in the content directory of this project.
 
 
 
