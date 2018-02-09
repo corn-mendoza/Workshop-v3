@@ -27,7 +27,7 @@ Installing cf-uaac using Ruby and Gem:
 
 
 #### Step 2: Configuring Application Security
-To complete security configuration, use the cf-uaac command in the Linux shell to execute the following to enable the role "read.fortunes":
+To complete security configuration, use the cf-uaac command in the Linux shell to execute the following to enable the role "read.fortunes". You will need to have access to the UAA Admin Credentials to complete these tasks.
 
 `$ uaac target uaa.sys.yourdomain.com --skip-ssl-validation`
 
