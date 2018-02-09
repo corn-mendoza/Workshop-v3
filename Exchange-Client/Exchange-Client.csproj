@@ -8,17 +8,11 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Pivotal.Discovery.Client" Version="2.0.0-dev-00109" />
     <PackageReference Include="Steeltoe.Extensions.Logging.CloudFoundry" Version="2.0.0-dev-00026" />
-    <PackageReference Include="Steeltoe.Management.CloudFoundryCore" Version="2.0.0-dev-00059" />
+    <PackageReference Include="Steeltoe.Management.CloudFoundryCore" Version="2.0.0-dev-00054" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="manifest.yml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

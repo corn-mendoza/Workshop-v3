@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
 using Almirex.Contracts.Fields;
 using Almirex.Contracts.Messages;
-using Microsoft.AspNetCore.Mvc;
-using Exchange.Services;
-using Microsoft.Extensions.Logging;
+using ExchangeLegacy.Services;
 
-namespace Exchange.Controllers
+namespace ExchangeLegacy.Controllers
 {
-    [Route("api/[controller]")]
-    public class OrderController : Controller
+    public class OrderController : ApiController
     {
         private readonly OrderbookService _orderbookService;
 
@@ -31,18 +29,18 @@ namespace Exchange.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [HttpGet]
+        public IHttpActionResult Get(string id)
         {
             var order = _orderbookService.OrderBook.FindOrder(id);
-            if(order != null)
+            if (order != null)
                 return Json(order.ToExecutionReport(ExecType.OrderStatus));
             return NotFound();
         }
 
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public List<ExecutionReport> Put(string id, [FromBody]ExecutionReport order)
         {
             var results = _orderbookService.NewOrder(order);
@@ -50,8 +48,8 @@ namespace Exchange.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        [HttpDelete]
+        public IHttpActionResult Delete(string id)
         {
             var executionReport = _orderbookService.CancelOrder(id).FirstOrDefault();
             return Json(executionReport);
