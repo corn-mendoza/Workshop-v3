@@ -1,4 +1,4 @@
-#Installing Security Features
+# Installing Security Features
 
 ### Overview
 The workshop application utilizes the internal UAC of PCF for user authorization and access. By default, this feature is disabled in the code to simplify deployments as admin access is required to complete the configuration. To complete configuration of UAC, the following steps will need to be completed to duplicate the security features found in the Steeltoe workshop. Existing users can be given access by adding the user to the security groups below.
@@ -33,7 +33,7 @@ To complete security configuration, use the cf-uaac command in the Linux shell t
 
 `$ uaac token client get admin -s {admin password}`
 
-`$ uaac add group read.fortunes`
+`$ uaac group add read.fortunes`
 
 `$ uaac user add {username} -p {password} --emails {email address}`
 
