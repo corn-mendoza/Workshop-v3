@@ -67,6 +67,11 @@ To complete the configuration, update the location of the Config Server reposito
 
 `> cf update-service myConfigServer -c {pathto/config.json}`
 
+or
+
+`> cf update-service myConfigServer -c '{\"git\":{\"uri\":\"https://github.com/corn-pivotal/configserver-
+repo\"}}'`
+
 Add a configuration file for the environment that is being setup. For example: if the ASPNETCORE_ENVIRONMENT is set to Azure, a WorkshopUI-Azure.yml file should be placed in the config server repository. The configuration file should be modified to provide the following URLs:
 
 - AppsManagerUrl: URI for Apps Manager Portal
