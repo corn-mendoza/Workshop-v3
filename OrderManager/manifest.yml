@@ -1,0 +1,11 @@
+﻿---
+applications:
+- name: ordermanager
+  random-route: true
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
+  env:
+    ASPNETCORE_ENVIRONMENT: Production
+  services:
+   - myDiscoveryService
+   - myHystrixService
+   - myMySqlService
