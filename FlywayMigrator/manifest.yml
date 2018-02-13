@@ -1,0 +1,13 @@
+---
+applications:
+- name: FlywayMigrator
+  memory: 1G
+  instances: 1
+  path: target/flyway-migrator-1.5.6.RELEASE.jar
+  buildpack: java_buildpack_offline
+  
+env:
+  TRUST_CERTS: api.sys.islands.cloud
+  
+services:
+ - myMySqlService
