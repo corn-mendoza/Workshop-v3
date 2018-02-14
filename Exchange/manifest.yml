@@ -1,7 +1,6 @@
 ﻿---
 applications:
 - name: Exchange_BTCUSD
-  random-route: true
   buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
   env:
     ASPNETCORE_ENVIRONMENT: Production

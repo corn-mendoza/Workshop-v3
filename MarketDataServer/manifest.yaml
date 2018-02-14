@@ -1,7 +1,6 @@
 ﻿---
 applications:
-- name: mds
-  random-route: true
+- name: MDS
   buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
   env:
     ASPNETCORE_ENVIRONMENT: Production

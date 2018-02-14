@@ -1,7 +1,6 @@
 ﻿---
 applications:
 - name: ExchangeLegacy_BTCUSD
-  random-route: true
   buildpack: hwc_buildpack
   stack: windows2012R2
   env:
