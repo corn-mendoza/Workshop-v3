@@ -13,7 +13,7 @@ This lab requires that the Cloud Foundry CLI and .NET Core is installed and can 
 #### Apps Manager UI: https://apps.run.haas-101.pez.pivotal.io
 #### Domain: cfapps.haas-101.pez.pivotal.io
 #### Workshop SQL Connection String: 
-	Server=tcp:{server};Initial Catalog={database};Persist Security Info=False;User ID={user};Password=*****;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+	Server={server};Initial Catalog={database};Persist Security Info=False;User ID={user};Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
     
 #### Org: Workshop
 #### Space: student-{#}
